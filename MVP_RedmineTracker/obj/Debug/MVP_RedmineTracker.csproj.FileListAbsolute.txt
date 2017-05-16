@@ -1,0 +1,14 @@
+C:\Users\Nathaniel\Desktop\From C++\MVP_RedmineTracker\MVP_RedmineTracker\bin\Debug\MVP_RedmineTracker.exe.config
+C:\Users\Nathaniel\Desktop\From C++\MVP_RedmineTracker\MVP_RedmineTracker\obj\Debug\MVP_RedmineTracker.csprojResolveAssemblyReference.cache
+C:\Users\Nathaniel\Desktop\From C++\MVP_RedmineTracker\MVP_RedmineTracker\obj\Debug\MVP_RedmineTracker.MVP.Forms.MainForm.resources
+C:\Users\Nathaniel\Desktop\From C++\MVP_RedmineTracker\MVP_RedmineTracker\obj\Debug\MVP_RedmineTracker.Properties.Resources.resources
+C:\Users\Nathaniel\Desktop\From C++\MVP_RedmineTracker\MVP_RedmineTracker\obj\Debug\MVP_RedmineTracker.csproj.GenerateResource.Cache
+C:\Users\Nathaniel\Desktop\From C++\MVP_RedmineTracker\MVP_RedmineTracker\bin\Debug\MVP_RedmineTracker.exe
+C:\Users\Nathaniel\Desktop\From C++\MVP_RedmineTracker\MVP_RedmineTracker\bin\Debug\MVP_RedmineTracker.pdb
+C:\Users\Nathaniel\Desktop\From C++\MVP_RedmineTracker\MVP_RedmineTracker\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Nathaniel\Desktop\From C++\MVP_RedmineTracker\MVP_RedmineTracker\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Nathaniel\Desktop\From C++\MVP_RedmineTracker\MVP_RedmineTracker\obj\Debug\MVP_RedmineTracker.exe
+C:\Users\Nathaniel\Desktop\From C++\MVP_RedmineTracker\MVP_RedmineTracker\obj\Debug\MVP_RedmineTracker.pdb
+C:\Users\Nathaniel\Desktop\Практика\MVP_RedmineTracker\MVP_RedmineTracker\bin\Debug\MVP_RedmineTracker.exe.config
+C:\Users\Nathaniel\Desktop\Практика\MVP_RedmineTracker\MVP_RedmineTracker\obj\Debug\MVP_RedmineTracker.exe
+C:\Users\Nathaniel\Desktop\Практика\MVP_RedmineTracker\MVP_RedmineTracker\obj\Debug\MVP_RedmineTracker.pdb
