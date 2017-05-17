@@ -64,6 +64,12 @@
     <Compile Include="MVP\Interfaces\IView.cs" />
     <Compile Include="MVP\Models\Model.cs" />
     <Compile Include="MVP\Models\Presenter.cs" />
+    <Compile Include="MVP\Models\Queries\Request_Issues.cs" />
+    <Compile Include="MVP\Models\Queries\Request_IssuesFilter.cs" />
+    <Compile Include="MVP\Models\Queries\Request_Journals.cs" />
+    <Compile Include="MVP\Models\Queries\Request_Memberships.cs" />
+    <Compile Include="MVP\Models\Queries\Request_Project.cs" />
+    <Compile Include="MVP\Models\Queries\Request_Projects.cs" />
     <Compile Include="MVP\Models\RedmineData\Assigned_to.cs" />
     <Compile Include="MVP\Models\RedmineData\Author.cs" />
     <Compile Include="MVP\Models\RedmineData\Authors.cs" />

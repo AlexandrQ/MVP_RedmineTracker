@@ -18,6 +18,8 @@ namespace MVP_RedmineTracker.MVP.Forms
     public partial class MainForm : Form , IMainForm
     {
         public event Action ShowIssues;
+        public event Action Initialize;
+
 
         private Model ms;
 
@@ -28,11 +30,15 @@ namespace MVP_RedmineTracker.MVP.Forms
             this.ms = ms;
 
             this.ms.IssuesUpdated += () => this.ShowmIss();
-        }
+            
+
+            
+        }         
 
         public void OpenView()
         {
-            Application.Run(this);
+            Initialize.Invoke();
+            Application.Run(this);            
         }
 
         public void CloseView()
@@ -42,6 +48,7 @@ namespace MVP_RedmineTracker.MVP.Forms
 
         private void ShowmIss()
         {
+            Initialize.Invoke();
             foreach (Issue issue in ms.myIssues.issues)
             {
                 dataGridView1.Rows.Add(issue.ID, issue.Project.Name,
@@ -57,6 +64,8 @@ namespace MVP_RedmineTracker.MVP.Forms
                     issue.Updated_on);
             }
         }
+
+        
 
         private void button1_Click(object sender, EventArgs e)
         {

@@ -10,6 +10,7 @@ namespace RedmineTracker.Interfaces
 {
     interface IModel
     {        
-        void getMyIssues();        
+        void getMyIssues();
+        void RunTimer();        
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using RedmineTracker.Interfaces;
 using RedmineRestApi.RedmineData;
+using RedmineRestApi.HttpRest;
 
 using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
@@ -21,75 +22,58 @@ namespace RedmineTracker.MVP
         public event Action IssuesUpdated;
 
         public Issues myIssues;
+        public Issues myOldIssues, myNewIssues;
+        public Timer MyTimer = new Timer();
+
 
 
         public void getMyIssues()
         {
-            myIssues = Run();
+            myIssues = RequestIssues.Run();
             IssuesUpdated.Invoke();
         }
 
-        public Issues Run()
+        public void RunTimer()
         {
-            Issues myIssues = null;
+            myOldIssues = RequestIssues.Run();
+            
+            MyTimer.Enabled = true;
+            MyTimer.Interval = 5000;
+            MyTimer.Tick += MyTimer_Tick;
 
-            HttpClient client = new HttpClient();
+        }
 
-            //Adding Redmine API key for user Authentication . It is mine, please use yours
-            client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+        public void MyTimer_Tick(object sender, EventArgs e)
+        {
+            //CompareTwoIssues();
+            
+        }
 
-            UriBuilder builder = new UriBuilder("http", "student-rm.exactpro.com", -1, "issues.json");
-            NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
-            query["assigned_to_id"] = "me";
+        private void CompareTwoIssues()
+        {            
+            myNewIssues = RequestIssues.Run();
 
-            query["set_filter"] = "1";
+            IDictionary<string, string> listOfChanges = new Dictionary<string, string>();
 
-            query["sort"] = "priority";
-            builder.Query += query.ToString();
+            if (!Issues.IssuesCount(myOldIssues, myNewIssues))
+            {              
+                
+                MessageBox.Show("У Вас новые задачи!");
+            }
 
-            HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Get, builder.Uri);
-            message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            listOfChanges = Issues.IssuesChanges(myOldIssues, myNewIssues);
 
-            Task<HttpResponseMessage> taskResponse = client.SendAsync(message);
 
-            taskResponse.Wait();
+            if (listOfChanges.Count != 0)
+            {                
 
-            HttpResponseMessage response = taskResponse.Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-
-                Task<Stream> streamTask = response.Content.ReadAsStreamAsync();
-
-                streamTask.Wait();
-
-                if (streamTask.IsCompleted)
+                foreach (KeyValuePair<string, string> myPair in listOfChanges)
                 {
-                    Stream responseStream = streamTask.Result;
-
-                    myIssues = parseIssueJson(responseStream);
-
-                    responseStream.Close();
+                    MessageBox.Show(myPair.Value);
                 }
             }
-            else
-            {
-                Console.WriteLine(" response failed. Response status code: [" + response.StatusCode + "]");
-            }
 
-            return myIssues;
         }
 
-        public Issues parseIssueJson(Stream dataStream)
-        {
-
-            DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Issues));
-
-            object obj = jsonSerializer.ReadObject(dataStream);
-
-            Issues data = obj as Issues;
-
-            return data;
-        }
     }
 }

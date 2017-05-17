@@ -17,12 +17,19 @@ namespace RedmineTracker.MVP
             _storage = s;
             
             _mainView.ShowIssues += () => ShowMyIss();
+            _mainView.Initialize += () => RunTimer();            
         }        
 
         private void ShowMyIss()
         {
             _storage.getMyIssues();
         }
+
+        private void RunTimer()
+        {
+            _storage.RunTimer();
+        }
+
 
         #region Presenter
         private void CancelAction(IView sender)
@@ -32,7 +39,7 @@ namespace RedmineTracker.MVP
        
         public void Run()
         {
-            _mainView.OpenView();
+            _mainView.OpenView();            
         }
         #endregion Presenter
 

@@ -7,6 +7,7 @@ namespace RedmineTracker.Interfaces
 {
     interface IMainForm:IView
     {                
-        event Action ShowIssues;        
+        event Action ShowIssues;
+        event Action Initialize;
     }
 }
