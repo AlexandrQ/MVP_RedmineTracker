@@ -19,21 +19,35 @@ namespace MVP_RedmineTracker.MVP.Forms
     {
         public event Action ShowIssues;
         public event Action Initialize;
+        //public event Action Timer_Tick;
+        public event Action ShowProjects;
+        public event Action NewIssue;
 
 
-        private Model ms;
-
+        private readonly IModel _model;
+        //private Timer MyTimer = new Timer();
 
         public MainForm(Model ms)
         {
             InitializeComponent();
-            this.ms = ms;
+            this._model = ms;
 
-            this.ms.IssuesUpdated += () => this.ShowmIss();
-            
+            /*MyTimer.Enabled = true;
+            MyTimer.Interval = 5000;
+            MyTimer.Tick += MyTimer_Tick;*/
 
-            
-        }         
+            this._model.IssuesUpdated += () => this.ShowmIss();
+            this._model.NewIssuesAppeared += () => this.NewIssues();
+            this._model.IssueChanged += () => this.NewIssueChanged();
+
+        }
+
+       /* public void MyTimer_Tick(object sender, EventArgs e)
+        {
+            Timer_Tick.Invoke();
+        }*/
+
+       
 
         public void OpenView()
         {
@@ -48,8 +62,8 @@ namespace MVP_RedmineTracker.MVP.Forms
 
         private void ShowmIss()
         {
-            Initialize.Invoke();
-            foreach (Issue issue in ms.myIssues.issues)
+            dataGridView1.Rows.Clear();
+            foreach (Issue issue in _model.getMyIssuesObj().issues)
             {
                 dataGridView1.Rows.Add(issue.ID, issue.Project.Name,
                     issue.Status.Name,
@@ -65,11 +79,33 @@ namespace MVP_RedmineTracker.MVP.Forms
             }
         }
 
-        
+        public void NewIssues()
+        {
+            MessageBox.Show("У Вас новые задачи!");
+        }
+
+        public void NewIssueChanged()
+        {
+            foreach (KeyValuePair<string, string> myPair in this._model.getListOfChange())
+            {
+                MessageBox.Show(myPair.Value);
+            }
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
             ShowIssues.Invoke();
+        }
+
+        private void ShowProjectsButton_Click(object sender, EventArgs e)
+        {
+            ShowProjects.Invoke();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            NewIssue.Invoke();
         }
     }
 }

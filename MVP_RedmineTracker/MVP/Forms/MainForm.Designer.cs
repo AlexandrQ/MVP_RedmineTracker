@@ -43,6 +43,8 @@
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
+            this.ShowProjectsButton = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,11 +162,33 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // ShowProjectsButton
+            // 
+            this.ShowProjectsButton.Location = new System.Drawing.Point(144, 30);
+            this.ShowProjectsButton.Name = "ShowProjectsButton";
+            this.ShowProjectsButton.Size = new System.Drawing.Size(79, 41);
+            this.ShowProjectsButton.TabIndex = 4;
+            this.ShowProjectsButton.Text = "Show my projects";
+            this.ShowProjectsButton.UseVisualStyleBackColor = true;
+            this.ShowProjectsButton.Click += new System.EventHandler(this.ShowProjectsButton_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(263, 30);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(79, 41);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Create new project";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 384);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.ShowProjectsButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "MainForm";
@@ -190,5 +214,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ShowProjectsButton;
+        private System.Windows.Forms.Button button2;
     }
 }

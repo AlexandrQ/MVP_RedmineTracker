@@ -58,6 +58,20 @@
     <Compile Include="MVP\Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MVP\Forms\NewIssueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MVP\Forms\NewIssueForm.Designer.cs">
+      <DependentUpon>NewIssueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Forms\ProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MVP\Forms\ProjectForm.Designer.cs">
+      <DependentUpon>ProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Interfaces\INewIssueForm.cs" />
+    <Compile Include="MVP\Interfaces\IProjectForm.cs" />
     <Compile Include="MVP\Interfaces\IModel.cs" />
     <Compile Include="MVP\Interfaces\IPresenter.cs" />
     <Compile Include="MVP\Interfaces\IMainForm.cs" />
@@ -97,6 +111,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MVP\Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MVP\Forms\NewIssueForm.resx">
+      <DependentUpon>NewIssueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MVP\Forms\ProjectForm.resx">
+      <DependentUpon>ProjectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -20,7 +20,7 @@ namespace RedmineRestApi.HttpRest
     {
 		
 
-        public Users Run()
+        public static Users Run()
         {
 			Users myUsers = null;
 
@@ -69,7 +69,7 @@ namespace RedmineRestApi.HttpRest
 			return myUsers;
 		}
 
-		public Users parseIssueJson(Stream dataStream)
+		public static Users parseIssueJson(Stream dataStream)
 		{			
 
 			DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Users));

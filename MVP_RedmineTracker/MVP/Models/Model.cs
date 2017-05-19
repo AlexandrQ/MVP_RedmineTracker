@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using RedmineTracker.Interfaces;
 using RedmineRestApi.RedmineData;
 using RedmineRestApi.HttpRest;
+using System.Threading;
 
 using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
@@ -20,12 +21,29 @@ namespace RedmineTracker.MVP
     public class Model : IModel
     {
         public event Action IssuesUpdated;
+        public event Action NewIssuesAppeared;
+        public event Action IssueChanged;
+        public event Action ProjectsReceived;
+        public Thread myThread;
 
         public Issues myIssues;
         public Issues myOldIssues, myNewIssues;
-        public Timer MyTimer = new Timer();
+        public Users myProjects;
+        public IDictionary<string, string> listOfChanges = new Dictionary<string, string>();
+
+        
+        
+        public Model()
+        {
+            myThread = new Thread(this.CompareTwoIssues);
+            
+        }       
 
 
+        public Users getMyProjectsObj()
+        {
+            return myProjects;
+        }
 
         public void getMyIssues()
         {
@@ -33,47 +51,54 @@ namespace RedmineTracker.MVP
             IssuesUpdated.Invoke();
         }
 
-        public void RunTimer()
+        public IDictionary<string, string> getListOfChange()
+        {
+            return listOfChanges;
+        }
+
+        public Issues getMyIssuesObj()
+        {
+            return myIssues;
+        }
+
+        public void getMyProjects()
+        {            
+            myProjects = RequestProjects.Run();
+            ProjectsReceived.Invoke();
+            
+        }
+
+        public void getMyOldIssues()
         {
             myOldIssues = RequestIssues.Run();
-            
-            MyTimer.Enabled = true;
-            MyTimer.Interval = 5000;
-            MyTimer.Tick += MyTimer_Tick;
-
+            myThread.Start();
         }
 
-        public void MyTimer_Tick(object sender, EventArgs e)
+
+
+
+        void CompareTwoIssues()
         {
-            //CompareTwoIssues();
-            
-        }
+            while (true)
+            {
+                myNewIssues = RequestIssues.Run();
 
-        private void CompareTwoIssues()
-        {            
-            myNewIssues = RequestIssues.Run();
-
-            IDictionary<string, string> listOfChanges = new Dictionary<string, string>();
-
-            if (!Issues.IssuesCount(myOldIssues, myNewIssues))
-            {              
-                
-                MessageBox.Show("У Вас новые задачи!");
-            }
-
-            listOfChanges = Issues.IssuesChanges(myOldIssues, myNewIssues);
-
-
-            if (listOfChanges.Count != 0)
-            {                
-
-                foreach (KeyValuePair<string, string> myPair in listOfChanges)
+                if (!Issues.IssuesCount(myOldIssues, myNewIssues))
                 {
-                    MessageBox.Show(myPair.Value);
+                    NewIssuesAppeared.Invoke();
                 }
+
+                listOfChanges = Issues.IssuesChanges(myOldIssues, myNewIssues);
+
+
+                if (listOfChanges.Count != 0)
+                {
+                    IssueChanged.Invoke();
+                }
+
+                myOldIssues = myNewIssues;
+                Thread.Sleep(5000);
             }
-
         }
-
     }
 }
