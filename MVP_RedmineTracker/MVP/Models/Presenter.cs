@@ -14,7 +14,8 @@ namespace RedmineTracker.MVP
         private readonly IMainForm _mainView;
         private readonly IProjectForm _projectView;
         private readonly IModel _storage;
-        private NewIssueForm _newIssueView;
+        private INewIssueForm _newIssueView;
+        private IJournalsForm _journalsView;
 
 
 
@@ -27,9 +28,10 @@ namespace RedmineTracker.MVP
             
             _mainView.ShowIssues += () => ShowMyIss();
             _mainView.Initialize += () => getOldIssues();
-            //_mainView.Timer_Tick += () => CheckChangesIssue();
+            _mainView.CloseMainView += () => StopThread();
             _mainView.ShowProjects += () => ShowProjectsView();
             _mainView.NewIssue += () => ShowNewIssueView();
+            _mainView.showJournals += () => OpenJournalsForm(_mainView.getSelectedIssueID());
 
             _projectView.ShowProjects += () => ShowProj();
 
@@ -45,12 +47,7 @@ namespace RedmineTracker.MVP
         private void ShowProj()
         {
             _storage.getMyProjects();
-        }
-
-        /*private void CheckChangesIssue()
-        {
-            _storage.CompareTwoIssues();
-        }*/
+        }        
 
         private void getOldIssues()
         {
@@ -62,17 +59,24 @@ namespace RedmineTracker.MVP
             _projectView.OpenView();
         }
 
+        private void StopThread()
+        {
+            _storage.stopThread();
+        }
+
         private void ShowNewIssueView()
         {
             //NewIssueForm myForm
             _newIssueView = new NewIssueForm();
             _newIssueView.OpenView();
-            _newIssueView.Init += () => InitReact();
-        }
+            //_newIssueView.Init += () => InitReact();
+        }       
 
-        private void InitReact()
+        private void OpenJournalsForm(string str)
         {
-            Console.WriteLine("InitReact");
+            _journalsView = new JournalsForm(_storage, str);
+            _journalsView.OpenView();
+            //_storage.JournalsQuery(str);            
         }
 
 

@@ -19,36 +19,24 @@ namespace MVP_RedmineTracker.MVP.Forms
     {
         public event Action ShowIssues;
         public event Action Initialize;
-        //public event Action Timer_Tick;
+        public event Action CloseMainView;
         public event Action ShowProjects;
         public event Action NewIssue;
+        public event Action showJournals;
 
-
-        private readonly IModel _model;
-        //private Timer MyTimer = new Timer();
+        private readonly IModel _model;        
 
         public MainForm(Model ms)
         {
             InitializeComponent();
-            this._model = ms;
-
-            /*MyTimer.Enabled = true;
-            MyTimer.Interval = 5000;
-            MyTimer.Tick += MyTimer_Tick;*/
+            this._model = ms;           
 
             this._model.IssuesUpdated += () => this.ShowmIss();
             this._model.NewIssuesAppeared += () => this.NewIssues();
             this._model.IssueChanged += () => this.NewIssueChanged();
 
         }
-
-       /* public void MyTimer_Tick(object sender, EventArgs e)
-        {
-            Timer_Tick.Invoke();
-        }*/
-
        
-
         public void OpenView()
         {
             Initialize.Invoke();
@@ -106,6 +94,29 @@ namespace MVP_RedmineTracker.MVP.Forms
         private void button2_Click(object sender, EventArgs e)
         {
             NewIssue.Invoke();
+        }        
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            CloseMainView.Invoke();            
+        }
+
+        public string getSelectedIssueID()
+        {            
+            int x = dataGridView1.SelectedCells[0].RowIndex;            
+            return dataGridView1.Rows[x].Cells[0].Value.ToString();
+        }
+
+        private void journalsButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                string issueID = "";
+                int x = dataGridView1.SelectedCells[0].RowIndex;
+                issueID = dataGridView1.Rows[x].Cells[0].Value.ToString();
+
+                showJournals.Invoke();
+            }
         }
     }
 }

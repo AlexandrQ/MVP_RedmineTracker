@@ -14,7 +14,7 @@ namespace MVP_RedmineTracker.MVP.Forms
 {
     public partial class NewIssueForm : Form, INewIssueForm
     {
-        public event Action Init;
+        //public event Action Init;
 
         public NewIssueForm()
         {
@@ -34,8 +34,7 @@ namespace MVP_RedmineTracker.MVP.Forms
         }
 
         private void closeButton_Click(object sender, EventArgs e)
-        {
-            this.Init.Invoke();
+        {            
             this.CloseView();
         }
     }

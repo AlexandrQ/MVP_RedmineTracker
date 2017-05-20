@@ -14,12 +14,16 @@ namespace RedmineTracker.Interfaces
         event Action NewIssuesAppeared;
         event Action IssueChanged;
         event Action ProjectsReceived;
+        event Action JournalsReceived;
 
         void getMyIssues();
         Issues getMyIssuesObj();
+        Issues getMyJournals();
+        void JournalsQuery(string issueID, IJournalsForm jf);
         IDictionary<string, string> getListOfChange();
         Users getMyProjectsObj();
         void getMyProjects();
+        void stopThread();
         
         void getMyOldIssues();
     }

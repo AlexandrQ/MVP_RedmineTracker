@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MVP\Forms\JournalsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MVP\Forms\JournalsForm.Designer.cs">
+      <DependentUpon>JournalsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MVP\Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,7 @@
       <DependentUpon>ProjectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MVP\Interfaces\INewIssueForm.cs" />
+    <Compile Include="MVP\Interfaces\IJournalsForm.cs" />
     <Compile Include="MVP\Interfaces\IProjectForm.cs" />
     <Compile Include="MVP\Interfaces\IModel.cs" />
     <Compile Include="MVP\Interfaces\IPresenter.cs" />
@@ -109,6 +116,9 @@
     <Compile Include="MVP\Models\RedmineData\Users.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MVP\Forms\JournalsForm.resx">
+      <DependentUpon>JournalsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MVP\Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

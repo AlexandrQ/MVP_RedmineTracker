@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RedmineTracker.Interfaces
 {
-    interface IView
+    public interface IView
     {
         void OpenView();
         void CloseView();

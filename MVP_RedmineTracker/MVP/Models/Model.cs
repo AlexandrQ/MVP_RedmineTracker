@@ -24,19 +24,22 @@ namespace RedmineTracker.MVP
         public event Action NewIssuesAppeared;
         public event Action IssueChanged;
         public event Action ProjectsReceived;
+        public event Action JournalsReceived;
+
         public Thread myThread;
+        private bool mySwitch = true;
 
         public Issues myIssues;
         public Issues myOldIssues, myNewIssues;
         public Users myProjects;
+        public Issues myJournals;
         public IDictionary<string, string> listOfChanges = new Dictionary<string, string>();
 
         
         
         public Model()
         {
-            myThread = new Thread(this.CompareTwoIssues);
-            
+            myThread = new Thread(this.CompareTwoIssues);            
         }       
 
 
@@ -74,12 +77,28 @@ namespace RedmineTracker.MVP
             myThread.Start();
         }
 
+        public Issues getMyJournals()
+        {
+            return myJournals;
+        }
 
+        public void stopThread()
+        {
+            mySwitch = false;
+        }
+
+        public void JournalsQuery(string issueID, IJournalsForm jf)
+        {            
+            RequestJournals simpleReq = new RequestJournals();
+            myJournals = simpleReq.Run(issueID);
+            //JournalsReceived.Invoke();
+            jf.ShowJournals();
+        }
 
 
         void CompareTwoIssues()
         {
-            while (true)
+            while (mySwitch)
             {
                 myNewIssues = RequestIssues.Run();
 
@@ -95,7 +114,7 @@ namespace RedmineTracker.MVP
                 {
                     IssueChanged.Invoke();
                 }
-
+                Console.WriteLine("Compare Two Issues");
                 myOldIssues = myNewIssues;
                 Thread.Sleep(5000);
             }

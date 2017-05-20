@@ -208,7 +208,7 @@
             this.Controls.Add(this.projectComboBox);
             this.Controls.Add(this.closeButton);
             this.Name = "NewIssueForm";
-            this.Text = "NewIssueForm";
+            this.Text = "New Issue";
             this.ResumeLayout(false);
             this.PerformLayout();
 

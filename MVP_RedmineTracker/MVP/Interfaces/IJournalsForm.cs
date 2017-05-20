@@ -5,11 +5,9 @@ using System.Text;
 
 namespace RedmineTracker.Interfaces
 {
-    interface INewIssueForm : IView
+    public interface IJournalsForm : IView
     {
         //event Action ShowProjects;
-
-        //event Action Init;
-
+        void ShowJournals();
     }
 }

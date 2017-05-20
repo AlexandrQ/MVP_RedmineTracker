@@ -9,8 +9,11 @@ namespace RedmineTracker.Interfaces
     {                
         event Action ShowIssues;
         event Action Initialize;
-        //event Action Timer_Tick;
+        event Action CloseMainView;
         event Action ShowProjects;
         event Action NewIssue;
+        event Action showJournals;
+
+        string getSelectedIssueID();
     }
 }
