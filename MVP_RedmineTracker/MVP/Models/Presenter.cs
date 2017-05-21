@@ -10,14 +10,14 @@ using MVP_RedmineTracker.MVP.Forms;
 namespace RedmineTracker.MVP
 {
     class Presenter : IPresenter
-    {        
-        private readonly IMainForm _mainView;
-        private readonly IProjectForm _projectView;
+    {
         private readonly IModel _storage;
+        private readonly IMainForm _mainView;
+        private readonly IProjectForm _projectView;        
         private INewIssueForm _newIssueView;
         private IJournalsForm _journalsView;
         private IProjectDetails _detailsView;
-
+        private IUsersListForm _usersListView;
 
         public Presenter(IMainForm v1, IProjectForm v2, IModel s)
         {
@@ -38,12 +38,14 @@ namespace RedmineTracker.MVP
 
         private void ShowProj()
         {
-            _storage.getMyProjects();
+            _storage.ProjectsQuery();
         }        
 
         private void initIssuesIssues()
         {
-            _storage.IssuesRequest();
+            _storage.IssuesQuery();
+            _storage.ProjectsQuery();
+            _storage.ProjectConboInit();
         }
 
         private void ShowProjectsView()
@@ -72,6 +74,14 @@ namespace RedmineTracker.MVP
         {
             _detailsView = new ProjectDetailsForm(projID, _storage);
             _detailsView.OpenView();
+            _detailsView.ShowListParticipans += () => OpenUsersListForm(_detailsView.getProjectID());
+        }
+
+        private void OpenUsersListForm(string projID)
+        {
+            _usersListView = new UsersListForm(projID, _storage);
+            _usersListView.OpenView();
+            //_storage.UsersListQuery(projID, _usersListView);
         }
 
 

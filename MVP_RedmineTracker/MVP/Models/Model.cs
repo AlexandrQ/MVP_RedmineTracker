@@ -23,34 +23,44 @@ namespace RedmineTracker.MVP
         public event Action IssuesUpdated;
         public event Action NewIssuesAppeared;
         public event Action IssueChanged;
-        public event Action ProjectsReceived;
-        public event Action JournalsReceived;
+        public event Action ProjectsReceived;        
 
-        public Thread myThread;
+        private Thread myThread;
         private bool mySwitch = true;
 
-        public Issues myIssues;
-        public Issues myOldIssues, myNewIssues;
-        public Users myProjects;
-        public Issues myJournals;
-        public Projects projDetails;
-        public IDictionary<string, string> listOfChanges = new Dictionary<string, string>();        
-        
+        private Issues myIssues;
+        private Issues myNewIssues;
+        private Users myProjects;
+        private Issues myJournals;
+        private Projects projDetails;        
+        private Memberships myMemberships;
+        private IDictionary<string, string> listOfChanges;
+
+        private readonly IDictionary<string, string> StatusValue = new Dictionary<string, string>()
+        {
+            { "New", "1" },
+            { "In Progress", "2"},
+            { "Resolved", "3" },
+            { "Feedback", "4" },
+            { "Closed", "5" },
+            { "Rejected", "6" },
+        };
+
+        private readonly IDictionary<string, string> PriorityValue = new Dictionary<string, string>()
+        {
+            { "Low", "1" },
+            { "Normal", "2"},
+            { "High", "3" },
+            { "Urgent", "4" },
+            { "Immediate", "5" },
+        };
+
+        private IDictionary<string, string> ProjectCombo = new Dictionary<string, string>();
+
+
         public Model()
         {
             myThread = new Thread(this.CompareTwoIssues);            
-        } 
-              
-
-        public Users getMyProjectsObj()
-        {
-            return myProjects;
-        }       
-         
-
-        public IDictionary<string, string> getListOfChange()
-        {
-            return listOfChanges;
         }
 
 
@@ -60,17 +70,15 @@ namespace RedmineTracker.MVP
         }
 
 
-        public void getMyProjects()
-        {            
-            myProjects = RequestProjects.Run();
-            ProjectsReceived.Invoke();            
-        }
-
-
-        public void IssuesRequest()
+        public Users getMyProjects()
         {
-            myIssues = RequestIssues.Run();
-            myThread.Start();            
+            return myProjects;
+        }       
+         
+
+        public IDictionary<string, string> getListOfChange()
+        {
+            return listOfChanges;
         }
 
 
@@ -86,17 +94,54 @@ namespace RedmineTracker.MVP
         }
 
 
+        public Memberships getMemberships()
+        {
+            return myMemberships;
+        }
+
+
+        public IDictionary<string, string> getStatusValue()
+        {
+            return StatusValue;
+        }
+
+
+        public IDictionary<string, string> getPriorityValue()
+        {
+            return PriorityValue;
+        }
+
+
+        public IDictionary<string, string> getProjectCombo()
+        {
+            return ProjectCombo;
+        }
+
+
         public void stopThread()
         {
             mySwitch = false;
         }
 
 
+        public void ProjectsQuery()
+        {
+            myProjects = RequestProjects.Run();
+            ProjectsReceived.Invoke();
+        }
+
+
+        public void IssuesQuery()
+        {
+            myIssues = RequestIssues.Run();
+            myThread.Start();
+        }
+
+
         public void JournalsQuery(string issueID, IJournalsForm _journalForm)
         {            
             RequestJournals simpleReq = new RequestJournals();
-            myJournals = simpleReq.Run(issueID);
-            //JournalsReceived.Invoke();
+            myJournals = simpleReq.Run(issueID);            
             _journalForm.ShowJournals();
         }
 
@@ -109,7 +154,22 @@ namespace RedmineTracker.MVP
         }
 
 
-        void CompareTwoIssues()
+        public void UsersListQuery(string projID, IUsersListForm UForm)
+        {
+            RequestMemberships simpleReq = new RequestMemberships();
+            myMemberships = simpleReq.Run(projID);            
+            UForm.showUserList();
+        }
+
+        public void ProjectConboInit()
+        {
+            foreach(Membership membership in myProjects.user.Memberships)
+            {
+                ProjectCombo.Add(membership.Project.Name, membership.Project.ID);
+            }
+        }
+
+        private void CompareTwoIssues()
         {
             while (mySwitch)
             {
@@ -121,7 +181,6 @@ namespace RedmineTracker.MVP
                 }
 
                 listOfChanges = Issues.IssuesChanges(myIssues, myNewIssues);
-
 
                 if (listOfChanges.Count != 0)
                 {

@@ -36,3 +36,4 @@ C:\Users\Nathaniel\Desktop\Практика\MVP_RedmineTracker\MVP_RedmineTracke
 C:\Users\Nathaniel\Desktop\Практика\MVP_RedmineTracker\MVP_RedmineTracker\obj\Debug\MVP_RedmineTracker.MVP.Forms.ProjectForm.resources
 C:\Users\Nathaniel\Desktop\Практика\MVP_RedmineTracker\MVP_RedmineTracker\obj\Debug\MVP_RedmineTracker.MVP.Forms.JournalsForm.resources
 C:\Users\Nathaniel\Desktop\Практика\MVP_RedmineTracker\MVP_RedmineTracker\obj\Debug\MVP_RedmineTracker.MVP.Forms.ProjectDetailsForm.resources
+C:\Users\Nathaniel\Desktop\Практика\MVP_RedmineTracker\MVP_RedmineTracker\obj\Debug\MVP_RedmineTracker.MVP.Forms.UsersListForm.resources

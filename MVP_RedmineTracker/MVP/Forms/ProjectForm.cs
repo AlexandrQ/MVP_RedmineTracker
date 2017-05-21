@@ -44,7 +44,7 @@ namespace MVP_RedmineTracker.MVP.Forms
         public void ShowProj()
         {
             dataGridView1.Rows.Clear();
-            foreach (Membership membersip in _ms.getMyProjectsObj().user.Memberships)
+            foreach (Membership membersip in _ms.getMyProjects().user.Memberships)
             {
                 dataGridView1.Rows.Add(membersip.Project.ID, membersip.Project.Name);
             }

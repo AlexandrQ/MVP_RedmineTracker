@@ -32,7 +32,7 @@ namespace MVP_RedmineTracker.MVP.Forms
             
             this._model.NewIssuesAppeared += () => this.NewIssues();
             this._model.IssueChanged += () => this.NewIssueChanged();
-            
+            this._model.ProjectsReceived += () => fillCombo();
 
         }
        
@@ -40,10 +40,19 @@ namespace MVP_RedmineTracker.MVP.Forms
         {
             MainFormInitialized.Invoke();
             this.ShowmIss();
+            //fillCombo();
             Application.Run(this);            
         }
-
         
+        private void fillCombo()
+        {
+            projectComboBox.Items.Clear();
+            projectComboBox.Items.Add("");
+            foreach (KeyValuePair<string, string> myPair in _model.getProjectCombo())
+            {
+                projectComboBox.Items.Add(myPair.Key);
+            }            
+        }        
 
         public void CloseView()
         {
@@ -117,6 +126,11 @@ namespace MVP_RedmineTracker.MVP.Forms
             {
                 showJournals.Invoke();
             }
+        }
+
+        private void filterButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

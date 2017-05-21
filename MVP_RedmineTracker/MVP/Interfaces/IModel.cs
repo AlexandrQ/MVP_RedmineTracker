@@ -10,23 +10,28 @@ namespace RedmineTracker.Interfaces
 {
     interface IModel
     {
-        event Action IssuesUpdated;
-        event Action NewIssuesAppeared;
         event Action IssueChanged;
+        event Action IssuesUpdated;
         event Action ProjectsReceived;
-        event Action JournalsReceived;
+        event Action NewIssuesAppeared;
 
         Issues getMyIssues();
-        //Issues getMyIssuesObj();
-        Issues getMyJournals();
+        Users getMyProjects();
+        Issues getMyJournals();        
         Projects getProjectDetails();
-        void JournalsQuery(string issueID, IJournalsForm jf);
-        void ProjDetailsQuery(string projID, IProjectDetails _detailsForm);
+        Memberships getMemberships();
+        IDictionary<string, string> getStatusValue();
         IDictionary<string, string> getListOfChange();
-        Users getMyProjectsObj();
-        void getMyProjects();
+        IDictionary<string, string> getProjectCombo();
+        IDictionary<string, string> getPriorityValue();
+
+        void IssuesQuery();
+        void ProjectsQuery();
+        void JournalsQuery(string issueID, IJournalsForm _jf);
+        void UsersListQuery(string projID, IUsersListForm _UForm);        
+        void ProjDetailsQuery(string projID, IProjectDetails _detailsForm);        
+
         void stopThread();
-        
-        void IssuesRequest();
+        void ProjectConboInit();
     }
 }
