@@ -17,6 +17,7 @@ namespace MVP_RedmineTracker.MVP.Forms
     partial class ProjectForm : Form, IProjectForm
     {
         public event Action ShowProjects;
+        public event Action ShowDetailsView;
 
         private readonly IModel _ms;
 
@@ -54,6 +55,18 @@ namespace MVP_RedmineTracker.MVP.Forms
             CloseView();
         }
 
-        
+        public string getSelectedProjID()
+        {
+            int x = dataGridView1.SelectedCells[0].RowIndex;
+            return dataGridView1.Rows[x].Cells[0].Value.ToString();
+        }
+
+        private void detailsButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                ShowDetailsView.Invoke();
+            }
+        }
     }
 }

@@ -17,10 +17,10 @@ namespace MVP_RedmineTracker.MVP.Forms
         private readonly IModel _model;
         private string issueID;
 
-        public JournalsForm(IModel model, string issID)
+        public JournalsForm(IModel imodel, string issID)
         {
             this.InitializeComponent();
-            this._model = model;
+            this._model = imodel;
            // this._model.JournalsReceived += () => ShowJournals();
             this.issueID = issID;
         }

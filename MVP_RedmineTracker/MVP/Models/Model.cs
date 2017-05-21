@@ -33,66 +33,79 @@ namespace RedmineTracker.MVP
         public Issues myOldIssues, myNewIssues;
         public Users myProjects;
         public Issues myJournals;
-        public IDictionary<string, string> listOfChanges = new Dictionary<string, string>();
-
-        
+        public Projects projDetails;
+        public IDictionary<string, string> listOfChanges = new Dictionary<string, string>();        
         
         public Model()
         {
             myThread = new Thread(this.CompareTwoIssues);            
-        }       
-
+        } 
+              
 
         public Users getMyProjectsObj()
         {
             return myProjects;
-        }
-
-        public void getMyIssues()
-        {
-            myIssues = RequestIssues.Run();
-            IssuesUpdated.Invoke();
-        }
+        }       
+         
 
         public IDictionary<string, string> getListOfChange()
         {
             return listOfChanges;
         }
 
-        public Issues getMyIssuesObj()
+
+        public Issues getMyIssues()
         {
             return myIssues;
         }
 
+
         public void getMyProjects()
         {            
             myProjects = RequestProjects.Run();
-            ProjectsReceived.Invoke();
-            
+            ProjectsReceived.Invoke();            
         }
 
-        public void getMyOldIssues()
+
+        public void IssuesRequest()
         {
-            myOldIssues = RequestIssues.Run();
-            myThread.Start();
+            myIssues = RequestIssues.Run();
+            myThread.Start();            
         }
+
 
         public Issues getMyJournals()
         {
             return myJournals;
         }
 
+
+        public Projects getProjectDetails()
+        {
+            return projDetails;
+        }
+
+
         public void stopThread()
         {
             mySwitch = false;
         }
 
-        public void JournalsQuery(string issueID, IJournalsForm jf)
+
+        public void JournalsQuery(string issueID, IJournalsForm _journalForm)
         {            
             RequestJournals simpleReq = new RequestJournals();
             myJournals = simpleReq.Run(issueID);
             //JournalsReceived.Invoke();
-            jf.ShowJournals();
+            _journalForm.ShowJournals();
+        }
+
+
+        public void ProjDetailsQuery(string projID, IProjectDetails _detailsForm)
+        {            
+            RequestProject simpleReq = new RequestProject();
+            projDetails = simpleReq.Run(projID);
+            _detailsForm.ShowDetails();
         }
 
 
@@ -102,12 +115,12 @@ namespace RedmineTracker.MVP
             {
                 myNewIssues = RequestIssues.Run();
 
-                if (!Issues.IssuesCount(myOldIssues, myNewIssues))
+                if (!Issues.IssuesCount(myIssues, myNewIssues))
                 {
                     NewIssuesAppeared.Invoke();
                 }
 
-                listOfChanges = Issues.IssuesChanges(myOldIssues, myNewIssues);
+                listOfChanges = Issues.IssuesChanges(myIssues, myNewIssues);
 
 
                 if (listOfChanges.Count != 0)
@@ -115,7 +128,7 @@ namespace RedmineTracker.MVP
                     IssueChanged.Invoke();
                 }
                 Console.WriteLine("Compare Two Issues");
-                myOldIssues = myNewIssues;
+                myIssues = myNewIssues;
                 Thread.Sleep(5000);
             }
         }

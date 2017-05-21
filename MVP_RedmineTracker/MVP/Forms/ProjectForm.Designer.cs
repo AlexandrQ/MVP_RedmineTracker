@@ -32,6 +32,7 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.exitButton1 = new System.Windows.Forms.Button();
+            this.detailsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,12 +73,23 @@
             this.exitButton1.UseVisualStyleBackColor = true;
             this.exitButton1.Click += new System.EventHandler(this.exitButton1_Click);
             // 
+            // detailsButton
+            // 
+            this.detailsButton.Location = new System.Drawing.Point(28, 266);
+            this.detailsButton.Name = "detailsButton";
+            this.detailsButton.Size = new System.Drawing.Size(75, 39);
+            this.detailsButton.TabIndex = 2;
+            this.detailsButton.Text = "Details";
+            this.detailsButton.UseVisualStyleBackColor = true;
+            this.detailsButton.Click += new System.EventHandler(this.detailsButton_Click);
+            // 
             // ProjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(409, 340);
             this.ControlBox = false;
+            this.Controls.Add(this.detailsButton);
             this.Controls.Add(this.exitButton1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "ProjectForm";
@@ -93,5 +105,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Button exitButton1;
+        private System.Windows.Forms.Button detailsButton;
     }
 }

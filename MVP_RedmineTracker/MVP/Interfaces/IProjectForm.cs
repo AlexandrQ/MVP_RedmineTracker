@@ -8,6 +8,9 @@ namespace RedmineTracker.Interfaces
     interface IProjectForm : IView
     {
         event Action ShowProjects;
-        
+        event Action ShowDetailsView;
+
+        string getSelectedProjID();
+
     }
 }

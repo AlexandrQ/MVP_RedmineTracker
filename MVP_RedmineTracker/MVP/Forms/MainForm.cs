@@ -15,10 +15,9 @@ using RedmineTracker.MVP;
 namespace MVP_RedmineTracker.MVP.Forms
 {   
 
-    public partial class MainForm : Form , IMainForm
-    {
-        public event Action ShowIssues;
-        public event Action Initialize;
+    partial class MainForm : Form , IMainForm
+    {        
+        public event Action MainFormInitialized;
         public event Action CloseMainView;
         public event Action ShowProjects;
         public event Action NewIssue;
@@ -26,22 +25,25 @@ namespace MVP_RedmineTracker.MVP.Forms
 
         private readonly IModel _model;        
 
-        public MainForm(Model ms)
+        public MainForm(IModel ms)
         {
             InitializeComponent();
-            this._model = ms;           
-
-            this._model.IssuesUpdated += () => this.ShowmIss();
+            this._model = ms;
+            
             this._model.NewIssuesAppeared += () => this.NewIssues();
             this._model.IssueChanged += () => this.NewIssueChanged();
+            
 
         }
        
         public void OpenView()
         {
-            Initialize.Invoke();
+            MainFormInitialized.Invoke();
+            this.ShowmIss();
             Application.Run(this);            
         }
+
+        
 
         public void CloseView()
         {
@@ -49,9 +51,9 @@ namespace MVP_RedmineTracker.MVP.Forms
         }
 
         private void ShowmIss()
-        {
+        {                        
             dataGridView1.Rows.Clear();
-            foreach (Issue issue in _model.getMyIssuesObj().issues)
+            foreach (Issue issue in _model.getMyIssues().issues)
             {
                 dataGridView1.Rows.Add(issue.ID, issue.Project.Name,
                     issue.Status.Name,
@@ -70,6 +72,7 @@ namespace MVP_RedmineTracker.MVP.Forms
         public void NewIssues()
         {
             MessageBox.Show("У Вас новые задачи!");
+            ShowmIss();
         }
 
         public void NewIssueChanged()
@@ -78,12 +81,13 @@ namespace MVP_RedmineTracker.MVP.Forms
             {
                 MessageBox.Show(myPair.Value);
             }
+            ShowmIss();
         }
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ShowIssues.Invoke();
+            ShowmIss();            
         }
 
         private void ShowProjectsButton_Click(object sender, EventArgs e)
@@ -111,10 +115,6 @@ namespace MVP_RedmineTracker.MVP.Forms
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
-                string issueID = "";
-                int x = dataGridView1.SelectedCells[0].RowIndex;
-                issueID = dataGridView1.Rows[x].Cells[0].Value.ToString();
-
                 showJournals.Invoke();
             }
         }
