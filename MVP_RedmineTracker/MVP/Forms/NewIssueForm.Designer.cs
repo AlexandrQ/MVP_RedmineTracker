@@ -63,6 +63,7 @@
             this.projectComboBox.Name = "projectComboBox";
             this.projectComboBox.Size = new System.Drawing.Size(274, 21);
             this.projectComboBox.TabIndex = 1;
+            this.projectComboBox.SelectionChangeCommitted += new System.EventHandler(this.projectComboBox_SelectionChangeCommitted);
             // 
             // label1
             // 
@@ -118,6 +119,14 @@
             // statusComboBox
             // 
             this.statusComboBox.FormattingEnabled = true;
+            this.statusComboBox.Items.AddRange(new object[] {
+            "",
+            "New",
+            "In Progress",
+            "Resolved",
+            "Feedback",
+            "Closed",
+            "Rejected"});
             this.statusComboBox.Location = new System.Drawing.Point(87, 199);
             this.statusComboBox.Name = "statusComboBox";
             this.statusComboBox.Size = new System.Drawing.Size(274, 21);
@@ -126,6 +135,13 @@
             // priorityComboBox
             // 
             this.priorityComboBox.FormattingEnabled = true;
+            this.priorityComboBox.Items.AddRange(new object[] {
+            "",
+            "Low",
+            "Normal",
+            "High",
+            "Urgent",
+            "Immediate"});
             this.priorityComboBox.Location = new System.Drawing.Point(87, 236);
             this.priorityComboBox.Name = "priorityComboBox";
             this.priorityComboBox.Size = new System.Drawing.Size(274, 21);

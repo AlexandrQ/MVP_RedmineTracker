@@ -20,9 +20,9 @@ namespace RedmineTracker.MVP
 {
     public class Model : IModel
     {
-        public event Action IssuesUpdated;
+        public event Action FilterApplied;
         public event Action NewIssuesAppeared;
-        public event Action IssueChanged;
+        public event Action IssueChanged;        
         public event Action ProjectsReceived;        
 
         private Thread myThread;
@@ -30,6 +30,7 @@ namespace RedmineTracker.MVP
 
         private Issues myIssues;
         private Issues myNewIssues;
+        private Issues myFilterIssues;
         private Users myProjects;
         private Issues myJournals;
         private Projects projDetails;        
@@ -67,6 +68,11 @@ namespace RedmineTracker.MVP
         public Issues getMyIssues()
         {
             return myIssues;
+        }
+
+        public Issues getMyFilterIssues()
+        {
+            return myFilterIssues;
         }
 
 
@@ -112,7 +118,7 @@ namespace RedmineTracker.MVP
         }
 
 
-        public IDictionary<string, string> getProjectCombo()
+        public IDictionary<string, string> getProjectComboValue()
         {
             return ProjectCombo;
         }
@@ -127,6 +133,7 @@ namespace RedmineTracker.MVP
         public void ProjectsQuery()
         {
             myProjects = RequestProjects.Run();
+            ProjectComboInit();
             ProjectsReceived.Invoke();
         }
 
@@ -135,6 +142,20 @@ namespace RedmineTracker.MVP
         {
             myIssues = RequestIssues.Run();
             myThread.Start();
+        }
+
+
+        public void ChangeStatusQuery(string IssueID, string statusID)
+        {            
+            RequestIssues.RunPut(IssueID, statusID);
+        }
+
+
+        public void FilterQuery(IDictionary<string, string> myQuery)
+        {
+            RequestIssuesFilter simpleReq = new RequestIssuesFilter();
+            myFilterIssues = simpleReq.Run(myQuery);
+            FilterApplied.Invoke();
         }
 
 
@@ -154,20 +175,30 @@ namespace RedmineTracker.MVP
         }
 
 
-        public void UsersListQuery(string projID, IUsersListForm UForm)
+        public void UsersListQuery(string projID, IUsersListForm _UForm)
         {
             RequestMemberships simpleReq = new RequestMemberships();
             myMemberships = simpleReq.Run(projID);            
-            UForm.showUserList();
+            _UForm.showUserList();
         }
 
-        public void ProjectConboInit()
+        public void UsersListComboQuery(string projID, INewIssueForm _INewIssForm)
         {
-            foreach(Membership membership in myProjects.user.Memberships)
+            RequestMemberships simpleReq = new RequestMemberships();
+            myMemberships = simpleReq.Run(projID);
+            _INewIssForm.fillAssigneeComboBox();
+        }
+
+        private void ProjectComboInit()
+        {
+            ProjectCombo.Clear();
+            foreach (Membership membership in myProjects.user.Memberships)
             {
                 ProjectCombo.Add(membership.Project.Name, membership.Project.ID);
             }
         }
+
+        
 
         private void CompareTwoIssues()
         {
@@ -177,6 +208,7 @@ namespace RedmineTracker.MVP
 
                 if (!Issues.IssuesCount(myIssues, myNewIssues))
                 {
+                    myIssues = myNewIssues;
                     NewIssuesAppeared.Invoke();
                 }
 
@@ -184,10 +216,10 @@ namespace RedmineTracker.MVP
 
                 if (listOfChanges.Count != 0)
                 {
+                    myIssues = myNewIssues;
                     IssueChanged.Invoke();
                 }
-                Console.WriteLine("Compare Two Issues");
-                myIssues = myNewIssues;
+                Console.WriteLine("Compare Two Issues");                
                 Thread.Sleep(5000);
             }
         }

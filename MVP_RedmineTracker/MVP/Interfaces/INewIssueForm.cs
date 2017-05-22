@@ -5,11 +5,11 @@ using System.Text;
 
 namespace RedmineTracker.Interfaces
 {
-    interface INewIssueForm : IView
+    public interface INewIssueForm : IView
     {
-        //event Action ShowProjects;
+        event Action projectComboBoxSelected;
 
-        //event Action Init;
-
+        void fillAssigneeComboBox();
+        string getSelectedProjID();
     }
 }

@@ -12,8 +12,12 @@ namespace RedmineTracker.Interfaces
         event Action ShowProjects;
         event Action NewIssue;
         event Action showJournals;
+        event Action ApplyFilter;
+        event Action ChangeStatus;
 
         string getSelectedIssueID();
-        
+        string getSelectedStatusID();
+        IDictionary<string, string> getFilter();
+
     }
 }

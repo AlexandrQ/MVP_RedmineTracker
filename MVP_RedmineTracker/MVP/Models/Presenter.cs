@@ -30,39 +30,61 @@ namespace RedmineTracker.MVP
             _mainView.ShowProjects += () => ShowProjectsView();
             _mainView.NewIssue += () => ShowNewIssueView();
             _mainView.showJournals += () => OpenJournalsForm(_mainView.getSelectedIssueID());
+            _mainView.ApplyFilter += () => SendFilterQuery(_mainView.getFilter());
+            _mainView.ChangeStatus += () => ChangeStatusReq(_mainView.getSelectedIssueID(), _mainView.getSelectedStatusID());
 
             _projectView.ShowProjects += () => ShowProj();
-            _projectView.ShowDetailsView += () => OpenProjDetailsForm(_projectView.getSelectedProjID());            
-            
+            _projectView.ShowDetailsView += () => OpenProjDetailsForm(_projectView.getSelectedProjID());
+
+            //_newIssueView.projectComboBoxSelected += () => UserQuery(_newIssueView.getSelectedProjID());
         }        
 
         private void ShowProj()
         {
             _storage.ProjectsQuery();
-        }        
+        }
+        
+
+        private void SendFilterQuery(IDictionary<string, string> myFilter)
+        {
+            _storage.FilterQuery(myFilter);
+        }
+
+
+        private void ChangeStatusReq(string IssueID, string statusID)
+        {
+            _storage.ChangeStatusQuery(IssueID, statusID);
+        }
+
+        
+
 
         private void initIssuesIssues()
         {
             _storage.IssuesQuery();
             _storage.ProjectsQuery();
-            _storage.ProjectConboInit();
+            //_storage.ProjectComboInit();
         }
+
 
         private void ShowProjectsView()
         {
             _projectView.OpenView();
         }
 
+
         private void StopThread()
         {
             _storage.stopThread();
         }
 
+
         private void ShowNewIssueView()
         {            
-            _newIssueView = new NewIssueForm();
+            _newIssueView = new NewIssueForm(_storage);
             _newIssueView.OpenView();            
-        }       
+        }  
+        
 
         private void OpenJournalsForm(string str)
         {
@@ -70,12 +92,14 @@ namespace RedmineTracker.MVP
             _journalsView.OpenView();                   
         }
 
+
         private void OpenProjDetailsForm(string projID)
         {
             _detailsView = new ProjectDetailsForm(projID, _storage);
             _detailsView.OpenView();
             _detailsView.ShowListParticipans += () => OpenUsersListForm(_detailsView.getProjectID());
         }
+
 
         private void OpenUsersListForm(string projID)
         {
