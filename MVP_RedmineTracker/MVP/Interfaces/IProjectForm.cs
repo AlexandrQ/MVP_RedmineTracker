@@ -11,6 +11,5 @@ namespace RedmineTracker.Interfaces
         event Action ShowDetailsView;
 
         string getSelectedProjID();
-
     }
 }

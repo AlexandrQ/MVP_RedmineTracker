@@ -10,6 +10,7 @@ using System.Collections.Specialized;
 using System.Web;
 using RedmineRestApi.RedmineData;
 using System.Runtime.Serialization.Json;
+using System.Web.Script.Serialization;
 
 using Newtonsoft.Json;
 
@@ -95,9 +96,10 @@ namespace RedmineRestApi.HttpRest
             UriBuilder builder = new UriBuilder("http", "student-rm.exactpro.com", -1, "issues/" + issueID + ".json");            
 
             HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Put, builder.Uri);
-            message.Content = new StringContent("{\"issue\":{\"status_id\":" + statusID + "}}",       
+
+            message.Content = new StringContent("{\"issue\":{\"status_id\":" + statusID + "}}",
                                     Encoding.UTF8,
-                                    "application/json");                        
+                                    "application/json");
 
             Task<HttpResponseMessage> taskResponse = client.SendAsync(message);
 
@@ -115,6 +117,67 @@ namespace RedmineRestApi.HttpRest
                 if (streamTask.IsCompleted)
                 {
                     Stream responseStream = streamTask.Result;                    
+                    responseStream.Close();
+                }
+            }
+            else
+            {
+                Console.WriteLine(" response failed. Response status code: [" + response.StatusCode + "]");
+            }            
+        }
+
+
+        public static void RunPost (NewIssue newIssue)//queryDictionary)
+        {
+            //Issues myIssues = null;
+            
+
+            HttpClient client = new HttpClient();
+
+            //Adding Redmine API key for user Authentication . It is mine, please use yours
+            client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+
+            UriBuilder builder = new UriBuilder("http", "student-rm.exactpro.com", -1, "issues.json");
+            NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
+            /*query["tracker_id"] = "2";
+
+            foreach (KeyValuePair<string, string> myPair in queryDictionary)
+            {
+                query[myPair.Key] = myPair.Value;
+            }
+
+            builder.Query += query.ToString();*/
+
+            
+
+            HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Post, builder.Uri);
+            //message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string json = serializer.Serialize(newIssue);
+
+            message.Content = new StringContent("{\"issue\":" + json + "}",//{\"project_id\":12, \"subject\": \"Example\",\"priority_id\": 1, \"tracker_id\": 2}}",
+                                    Encoding.UTF8,
+                                    "application/json"); 
+
+            Task<HttpResponseMessage> taskResponse = client.SendAsync(message);
+
+            taskResponse.Wait();
+
+            HttpResponseMessage response = taskResponse.Result;
+            
+            if (response.IsSuccessStatusCode)
+            {
+
+                Task<Stream> streamTask = response.Content.ReadAsStreamAsync();
+
+                streamTask.Wait();
+
+                if (streamTask.IsCompleted)
+                {
+                    Stream responseStream = streamTask.Result;
+
+                    //myIssues = parseIssueJson(responseStream);
+
                     responseStream.Close();
                 }
             }

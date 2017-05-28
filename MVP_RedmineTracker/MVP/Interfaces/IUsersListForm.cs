@@ -6,11 +6,7 @@ using System.Text;
 namespace RedmineTracker.Interfaces
 {
     public interface IUsersListForm : IView
-    {
-        //event Action ShowListParticipans;
-
-        //void ShowDetails();
+    {        
         void showUserList();
-
     }
 }

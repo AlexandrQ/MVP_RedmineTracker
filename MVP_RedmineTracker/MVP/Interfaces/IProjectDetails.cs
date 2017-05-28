@@ -8,9 +8,9 @@ namespace RedmineTracker.Interfaces
     public interface IProjectDetails : IView
     {
         event Action ShowListParticipans;
-
-        void ShowDetails();
+        
         string getProjectID();
 
+        void ShowDetails();
     }
 }

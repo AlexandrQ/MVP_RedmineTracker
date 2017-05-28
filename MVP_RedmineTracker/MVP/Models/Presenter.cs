@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RedmineTracker.Interfaces;
+using RedmineRestApi.RedmineData;
 
 using MVP_RedmineTracker.MVP.Forms;
 
@@ -18,6 +19,7 @@ namespace RedmineTracker.MVP
         private IJournalsForm _journalsView;
         private IProjectDetails _detailsView;
         private IUsersListForm _usersListView;
+        private IUpdateIssuesForm _updateIssuesView;
 
         public Presenter(IMainForm v1, IProjectForm v2, IModel s)
         {
@@ -32,6 +34,7 @@ namespace RedmineTracker.MVP
             _mainView.showJournals += () => OpenJournalsForm(_mainView.getSelectedIssueID());
             _mainView.ApplyFilter += () => SendFilterQuery(_mainView.getFilter());
             _mainView.ChangeStatus += () => ChangeStatusReq(_mainView.getSelectedIssueID(), _mainView.getSelectedStatusID());
+            _mainView.IssueUpdate += () => OpenUpdateIssueView(_mainView.getSelectedIssueID());
 
             _projectView.ShowProjects += () => ShowProj();
             _projectView.ShowDetailsView += () => OpenProjDetailsForm(_projectView.getSelectedProjID());
@@ -51,12 +54,16 @@ namespace RedmineTracker.MVP
         }
 
 
+        private void SendNewIssueQuery(NewIssue query)
+        {
+            _storage.CreateNewIssueQuery(query);
+        }
+
+
         private void ChangeStatusReq(string IssueID, string statusID)
         {
             _storage.ChangeStatusQuery(IssueID, statusID);
-        }
-
-        
+        }        
 
 
         private void initIssuesIssues()
@@ -82,7 +89,8 @@ namespace RedmineTracker.MVP
         private void ShowNewIssueView()
         {            
             _newIssueView = new NewIssueForm(_storage);
-            _newIssueView.OpenView();            
+            _newIssueView.OpenView();
+            _newIssueView.CreateNewIssue += () => SendNewIssueQuery(_newIssueView.getNewIssue());
         }  
         
 
@@ -90,6 +98,13 @@ namespace RedmineTracker.MVP
         {
             _journalsView = new JournalsForm(_storage, str);
             _journalsView.OpenView();                   
+        }
+
+
+        private void OpenUpdateIssueView(string issueID)
+        {
+            _updateIssuesView = new UpdateIssuesForm(_storage, issueID);
+            _updateIssuesView.OpenView();
         }
 
 

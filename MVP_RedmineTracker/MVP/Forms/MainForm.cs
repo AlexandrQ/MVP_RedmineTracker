@@ -24,6 +24,7 @@ namespace MVP_RedmineTracker.MVP.Forms
         public event Action ShowProjects;
         public event Action NewIssue;
         public event Action showJournals;
+        public event Action IssueUpdate;
         public event Action ApplyFilter;
         public event Action ChangeStatus;
 
@@ -299,6 +300,14 @@ namespace MVP_RedmineTracker.MVP.Forms
                         ChangeStatus.Invoke();
                     }
                 }
+            }
+        }
+
+        private void issueUpdateButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                IssueUpdate.Invoke();
             }
         }
     }

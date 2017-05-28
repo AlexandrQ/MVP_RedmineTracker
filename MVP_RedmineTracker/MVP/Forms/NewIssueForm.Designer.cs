@@ -48,7 +48,7 @@
             // 
             // closeButton
             // 
-            this.closeButton.Location = new System.Drawing.Point(507, 352);
+            this.closeButton.Location = new System.Drawing.Point(226, 352);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(92, 36);
             this.closeButton.TabIndex = 0;
@@ -200,12 +200,13 @@
             this.createButton.TabIndex = 16;
             this.createButton.Text = "Create";
             this.createButton.UseVisualStyleBackColor = true;
+            this.createButton.Click += new System.EventHandler(this.createButton_Click);
             // 
             // NewIssueForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(702, 400);
+            this.ClientSize = new System.Drawing.Size(381, 400);
             this.ControlBox = false;
             this.Controls.Add(this.createButton);
             this.Controls.Add(this.watchersCheckedListBox);

@@ -19,14 +19,14 @@ using System.Web;
 namespace RedmineTracker.MVP
 {
     public class Model : IModel
-    {
+    {                
+        public event Action IssueChanged;
         public event Action FilterApplied;
+        public event Action ProjectsReceived;
         public event Action NewIssuesAppeared;
-        public event Action IssueChanged;        
-        public event Action ProjectsReceived;        
 
         private Thread myThread;
-        private bool mySwitch = true;
+        private bool mySwitchForThread = true;
 
         private Issues myIssues;
         private Issues myNewIssues;
@@ -126,7 +126,7 @@ namespace RedmineTracker.MVP
 
         public void stopThread()
         {
-            mySwitch = false;
+            mySwitchForThread = false;
         }
 
 
@@ -148,6 +148,12 @@ namespace RedmineTracker.MVP
         public void ChangeStatusQuery(string IssueID, string statusID)
         {            
             RequestIssues.RunPut(IssueID, statusID);
+        }
+
+
+        public void CreateNewIssueQuery(NewIssue myQuery)
+        {
+            RequestIssues.RunPost(myQuery);
         }
 
 
@@ -182,11 +188,20 @@ namespace RedmineTracker.MVP
             _UForm.showUserList();
         }
 
+
+        public void UsersListComboQuery(string projID, IUpdateIssuesForm _UIForm)
+        {
+            RequestMemberships simpleReq = new RequestMemberships();
+            myMemberships = simpleReq.Run(projID);
+            _UIForm.fillUserComboBox();
+        }
+
+
         public void UsersListComboQuery(string projID, INewIssueForm _INewIssForm)
         {
             RequestMemberships simpleReq = new RequestMemberships();
             myMemberships = simpleReq.Run(projID);
-            _INewIssForm.fillAssigneeComboBox();
+            _INewIssForm.FillAssignee();
         }
 
         private void ProjectComboInit()
@@ -202,7 +217,7 @@ namespace RedmineTracker.MVP
 
         private void CompareTwoIssues()
         {
-            while (mySwitch)
+            while (mySwitchForThread)
             {
                 myNewIssues = RequestIssues.Run();
 

@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using RedmineRestApi.RedmineData;
+
 namespace RedmineTracker.Interfaces
+
 {
     public interface INewIssueForm : IView
     {
-        event Action projectComboBoxSelected;
+        event Action CreateNewIssue;
 
-        void fillAssigneeComboBox();
+        NewIssue getNewIssue();
         string getSelectedProjID();
+        IDictionary<string, string> getIssueData();
+
+        void FillAssignee();
     }
 }

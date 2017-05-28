@@ -57,6 +57,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.filterButton = new System.Windows.Forms.Button();
             this.changeStatusButton = new System.Windows.Forms.Button();
+            this.issueUpdateButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -182,7 +183,7 @@
             // 
             // ShowProjectsButton
             // 
-            this.ShowProjectsButton.Location = new System.Drawing.Point(109, 12);
+            this.ShowProjectsButton.Location = new System.Drawing.Point(108, 12);
             this.ShowProjectsButton.Name = "ShowProjectsButton";
             this.ShowProjectsButton.Size = new System.Drawing.Size(79, 41);
             this.ShowProjectsButton.TabIndex = 4;
@@ -325,11 +326,22 @@
             this.changeStatusButton.UseVisualStyleBackColor = true;
             this.changeStatusButton.Click += new System.EventHandler(this.changeStatusButton_Click);
             // 
+            // issueUpdateButton
+            // 
+            this.issueUpdateButton.Location = new System.Drawing.Point(299, 12);
+            this.issueUpdateButton.Name = "issueUpdateButton";
+            this.issueUpdateButton.Size = new System.Drawing.Size(79, 41);
+            this.issueUpdateButton.TabIndex = 18;
+            this.issueUpdateButton.Text = "Issue update";
+            this.issueUpdateButton.UseVisualStyleBackColor = true;
+            this.issueUpdateButton.Click += new System.EventHandler(this.issueUpdateButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 384);
+            this.Controls.Add(this.issueUpdateButton);
             this.Controls.Add(this.changeStatusButton);
             this.Controls.Add(this.filterButton);
             this.Controls.Add(this.dateTimePicker1);
@@ -386,5 +398,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button filterButton;
         private System.Windows.Forms.Button changeStatusButton;
+        private System.Windows.Forms.Button issueUpdateButton;
     }
 }

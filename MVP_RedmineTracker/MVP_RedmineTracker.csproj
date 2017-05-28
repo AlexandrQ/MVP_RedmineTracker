@@ -41,6 +41,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MVP\Forms\UpdateIssuesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MVP\Forms\UpdateIssuesForm.Designer.cs">
+      <DependentUpon>UpdateIssuesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MVP\Forms\JournalsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +95,7 @@
     <Compile Include="MVP\Forms\UsersListForm.Designer.cs">
       <DependentUpon>UsersListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MVP\Interfaces\IUpdateIssuesForm.cs" />
     <Compile Include="MVP\Interfaces\IUsersListForm.cs" />
     <Compile Include="MVP\Interfaces\IProjectDetails.cs" />
     <Compile Include="MVP\Interfaces\INewIssueForm.cs" />
@@ -110,6 +118,7 @@
     <Compile Include="MVP\Models\RedmineData\Authors.cs" />
     <Compile Include="MVP\Models\RedmineData\Detail.cs" />
     <Compile Include="MVP\Models\RedmineData\Details.cs" />
+    <Compile Include="MVP\Models\RedmineData\NewIssue.cs" />
     <Compile Include="MVP\Models\RedmineData\Issue.cs" />
     <Compile Include="MVP\Models\RedmineData\Issues.cs" />
     <Compile Include="MVP\Models\RedmineData\Journal.cs" />
@@ -144,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MVP\Forms\ProjectForm.resx">
       <DependentUpon>ProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MVP\Forms\UpdateIssuesForm.resx">
+      <DependentUpon>UpdateIssuesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MVP\Forms\UsersListForm.resx">
       <DependentUpon>UsersListForm.cs</DependentUpon>
