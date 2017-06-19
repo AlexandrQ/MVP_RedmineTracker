@@ -24,9 +24,8 @@ namespace MVP_RedmineTracker
 
             Model ms = new Model();
             MainForm mainForm = new MainForm(ms);            
-            Presenter presenter = new Presenter(mainForm, new ProjectForm(ms),  ms);
+            Presenter presenter = new Presenter(mainForm, ms);
             presenter.Run();
-            
         }
     }
 }
