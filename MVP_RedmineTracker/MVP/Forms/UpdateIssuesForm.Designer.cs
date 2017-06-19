@@ -54,7 +54,7 @@
             this.doneRatioComboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.notesLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.notesTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -179,6 +179,7 @@
             this.updateButton.TabIndex = 2;
             this.updateButton.Text = "Update";
             this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // projectLabel
             // 
@@ -301,20 +302,20 @@
             this.notesLabel.TabIndex = 13;
             this.notesLabel.Text = "Notes";
             // 
-            // textBox1
+            // notesTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(79, 198);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(619, 65);
-            this.textBox1.TabIndex = 14;
+            this.notesTextBox.Location = new System.Drawing.Point(79, 198);
+            this.notesTextBox.Multiline = true;
+            this.notesTextBox.Name = "notesTextBox";
+            this.notesTextBox.Size = new System.Drawing.Size(619, 65);
+            this.notesTextBox.TabIndex = 14;
             // 
             // UpdateIssuesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1138, 279);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.notesTextBox);
             this.Controls.Add(this.notesLabel);
             this.Controls.Add(this.doneRatioComboBox);
             this.Controls.Add(this.label4);
@@ -353,7 +354,7 @@
         private System.Windows.Forms.ComboBox doneRatioComboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label notesLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox notesTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

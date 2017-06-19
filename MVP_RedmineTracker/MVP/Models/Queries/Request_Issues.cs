@@ -20,15 +20,77 @@ namespace RedmineRestApi.HttpRest
     class RequestIssues
     {
 
-
-        public static Issues Run()
+        public static string AuthenticationQuery(string Login, string Password)
         {
+            String encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(Login + ":" + Password));
+
+            HttpClient client = new HttpClient();
+
+
+            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+            client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
+
+            UriBuilder builder = new UriBuilder("http", "student-rm.exactpro.com", -1, "issues.json");
+            NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
+            query["assigned_to_id"] = "me";
+
+            //query["set_filter"] = "1";
+
+            //query["sort"] = "priority";
+            builder.Query += query.ToString();
+
+            HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Get, builder.Uri);
+            message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            Task<HttpResponseMessage> taskResponse = client.SendAsync(message);
+            try
+            {
+                taskResponse.Wait();
+            }
+            catch
+            {                
+                return "Ethernet error";
+            }
+            
+            HttpResponseMessage response = taskResponse.Result;            
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                Task<Stream> streamTask = response.Content.ReadAsStreamAsync();
+
+                streamTask.Wait();
+
+                if (streamTask.IsCompleted)
+                {
+                    Stream responseStream = streamTask.Result;                    
+
+                    responseStream.Close();
+
+                    return response.StatusCode.ToString();
+                }
+                else return response.StatusCode.ToString();
+            }
+            else
+            {
+                Console.WriteLine(" response failed. Response status code: [" + response.StatusCode + "]");
+                return response.StatusCode.ToString();
+            }
+
+            
+        }
+
+
+        public static Issues Run(string Login, string Password)
+        {
+            String encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(Login + ":" + Password));
             Issues myIssues = null;
 
             HttpClient client = new HttpClient();
 
-            //Adding Redmine API key for user Authentication . It is mine, please use yours
-            client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+
+            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+            client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
 
             UriBuilder builder = new UriBuilder("http", "student-rm.exactpro.com", -1, "issues.json");
             NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
@@ -86,18 +148,29 @@ namespace RedmineRestApi.HttpRest
             return data;
         }
 
-        public static void RunPut(string issueID, string statusID)
-        {           
+        public static void RunPut(string issueID, UpdateIssue updatedIssue, string Login, string Password)
+        {
+            String encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(Login + ":" + Password));
 
             HttpClient client = new HttpClient();
-            
-            client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+
+            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+            client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
 
             UriBuilder builder = new UriBuilder("http", "student-rm.exactpro.com", -1, "issues/" + issueID + ".json");            
 
             HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Put, builder.Uri);
 
-            message.Content = new StringContent("{\"issue\":{\"status_id\":" + statusID + "}}",
+            /*message.Content = new StringContent("{\"issue\":{\"status_id\":" + statusID + "}}",
+                                    Encoding.UTF8,
+                                    "application/json");*/
+
+            
+            //message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string json = serializer.Serialize(updatedIssue);
+
+            message.Content = new StringContent("{\"issue\":" + json + "}",//{\"project_id\":12, \"subject\": \"Example\",\"priority_id\": 1, \"tracker_id\": 2}}",
                                     Encoding.UTF8,
                                     "application/json");
 
@@ -127,19 +200,21 @@ namespace RedmineRestApi.HttpRest
         }
 
 
-        public static void RunPost (NewIssue newIssue)//queryDictionary)
+        public static void RunPost (NewIssue newIssue, string Login, string Password)
         {
             //Issues myIssues = null;
-            
+            String encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(Login + ":" + Password));
 
             HttpClient client = new HttpClient();
 
             //Adding Redmine API key for user Authentication . It is mine, please use yours
-            client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+
+            client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
 
             UriBuilder builder = new UriBuilder("http", "student-rm.exactpro.com", -1, "issues.json");
             NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
-            /*query["tracker_id"] = "2";
+           /*query["tracker_id"] = "2";
 
             foreach (KeyValuePair<string, string> myPair in queryDictionary)
             {
@@ -154,6 +229,14 @@ namespace RedmineRestApi.HttpRest
             //message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             string json = serializer.Serialize(newIssue);
+
+            /*foreach (KeyValuePair<string, string> myPair in filter)
+            {
+                if (myPair.Value != null)
+                {
+                    myString += "\"" + ;
+                }
+            } */
 
             message.Content = new StringContent("{\"issue\":" + json + "}",//{\"project_id\":12, \"subject\": \"Example\",\"priority_id\": 1, \"tracker_id\": 2}}",
                                     Encoding.UTF8,

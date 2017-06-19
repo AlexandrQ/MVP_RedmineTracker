@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MVP_RedmineTracker.MVP.Forms.JournalsForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAACAAAACAAAAAAAgCAAAACAAi4RwAAAEAAAAAAABA=</HashCode>
+      <FileName>MVP\Forms\JournalsForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.272" Collapsed="true" />
+  </Class>
+  <Class Name="MVP_RedmineTracker.MVP.Forms.MainForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADOABIECIQAAACE0DBUAATACi4ZyKBIGACAAAGIgA=</HashCode>
+      <FileName>MVP\Forms\MainForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MVP_RedmineTracker.MVP.Forms.NewIssueForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECBCCAABCAAghAAIgCAAAEDgAAAASAQAQAAEAAAoBA=</HashCode>
+      <FileName>MVP\Forms\NewIssueForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MVP_RedmineTracker.MVP.Forms.ProjectDetailsForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAQCAAAACABAAAAAiCEAABCAAg4BwAAAAAAAAAAABA=</HashCode>
+      <FileName>MVP\Forms\ProjectDetailsForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MVP_RedmineTracker.MVP.Forms.ProjectForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACASAAAACAwAAAEAACAgAACAAgwAAAAAgABEAAAAAA=</HashCode>
+      <FileName>MVP\Forms\ProjectForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MVP_RedmineTracker.MVP.Forms.UpdateIssuesForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAADCAAMJCIAQBAAAgGFEAATAgn5ZyABAAAAACAAIhA=</HashCode>
+      <FileName>MVP\Forms\UpdateIssuesForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MVP_RedmineTracker.MVP.Forms.UsersListForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAQCAAAAAAAgCEAAACAAg4AAAAAAAAAAAAABA=</HashCode>
+      <FileName>MVP\Forms\UsersListForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RedmineTracker.MVP.Model" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="27" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAJAAAICDQAAAAAIgAQgiDBIQAAgEABSIBSoxCARAJA=</HashCode>
+      <FileName>MVP\Models\Model.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RedmineTracker.MVP.Presenter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIgCABAAIAEAAEEAAgSAAAAAAAgAAAYAgAAAIRCgAI=</HashCode>
+      <FileName>MVP\Models\Presenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RedmineRestApi.HttpRest.RequestIssues" Collapsed="true">
+    <Position X="21.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAABAAgAAAAAAAAAAAI=</HashCode>
+      <FileName>MVP\Models\Queries\Request_Issues.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.HttpRest.RequestIssuesFilter" Collapsed="true">
+    <Position X="23.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAI=</HashCode>
+      <FileName>MVP\Models\Queries\Request_IssuesFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.HttpRest.RequestJournals" Collapsed="true">
+    <Position X="25.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAI=</HashCode>
+      <FileName>MVP\Models\Queries\Request_Journals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.HttpRest.RequestMemberships" Collapsed="true">
+    <Position X="27" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAI=</HashCode>
+      <FileName>MVP\Models\Queries\Request_Memberships.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.HttpRest.RequestProject" Collapsed="true">
+    <Position X="16.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAI=</HashCode>
+      <FileName>MVP\Models\Queries\Request_Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.HttpRest.RequestProjects" Collapsed="true">
+    <Position X="18.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAI=</HashCode>
+      <FileName>MVP\Models\Queries\Request_Projects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Assigned_to" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAEAAAAAAQAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Assigned_to.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Author" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAEAAAAAAQAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Author.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Authors" Collapsed="true">
+    <Position X="20" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Authors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Detail" Collapsed="true">
+    <Position X="21.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAEAAgAAAQAAAAAAAAAAAAAAQAAAgA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Detail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Details" Collapsed="true">
+    <Position X="23.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Details.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Issue" Collapsed="true">
+    <Position X="25.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgCEAAAggAAEgIAACAAQAAAAAAAAkAACQABAAiA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Issue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Issues" Collapsed="true">
+    <Position X="27" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAQAAAAAAABAiA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Issues.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Journal" Collapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAhAAAAAAABgAAEAAAAAAAAAAAAAAAAgAAAAAAAAgA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Journal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Journals" Collapsed="true">
+    <Position X="18.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Journals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Membership" Collapsed="true">
+    <Position X="23.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAgAAEAAAACAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Membership.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Memberships" Collapsed="true">
+    <Position X="25.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Memberships.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.NewIssue" Collapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAEIAAAAASAAAACAAAAAAAAAAAAgwA=</HashCode>
+      <FileName>MVP\Models\RedmineData\NewIssue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Priorities" Collapsed="true">
+    <Position X="21.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Priorities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Priority" Collapsed="true">
+    <Position X="23.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAEAAAAAAQAAAAAAAAAAAAAAABAAiA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Priority.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Project" Collapsed="true">
+    <Position X="27" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAggAAEAAAAAAQAAAAAAAAAgAACAAAAAAA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Projects" Collapsed="true">
+    <Position X="20" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Projects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Role" Collapsed="true">
+    <Position X="21.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Roles" Collapsed="true">
+    <Position X="23.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Roles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Status" Collapsed="true">
+    <Position X="27" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAEAAAAAAQAAAAAAAAAAAAAAABAAiA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Status.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Statuses" Collapsed="true">
+    <Position X="16.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Statuses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Tracker" Collapsed="true">
+    <Position X="18.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAEAAAAAAQAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Tracker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Trackers" Collapsed="true">
+    <Position X="20" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Trackers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.UpdateIssue" Collapsed="true">
+    <Position X="21.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAgAAEAAAAAAQAAAACAAAAAAAAAAAAIwA=</HashCode>
+      <FileName>MVP\Models\RedmineData\UpdateIssue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.User" Collapsed="true">
+    <Position X="25.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEIAAAAAgAAMAgAAAAQAAAAAAAABgAAQAQAAAgA=</HashCode>
+      <FileName>MVP\Models\RedmineData\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RedmineRestApi.RedmineData.Users" Collapsed="true">
+    <Position X="27" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>MVP\Models\RedmineData\Users.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVP_RedmineTracker.Program" Collapsed="true">
+    <Position X="25.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVP_RedmineTracker.Properties.Resources" Collapsed="true">
+    <Position X="20" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVP_RedmineTracker.Properties.Settings" Collapsed="true">
+    <Position X="25.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="RedmineTracker.Interfaces.IJournalsForm" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>MVP\Interfaces\IJournalsForm.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RedmineTracker.Interfaces.IMainForm" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAQAAAAEAAAQAAQAAAAQAKAIAAAAAACAAA=</HashCode>
+      <FileName>MVP\Interfaces\IMainForm.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RedmineTracker.Interfaces.IModel" Collapsed="true">
+    <Position X="16.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAJAAAICBQAAAAAIgAAACBAIQAAgAAACIBQoQAABAJA=</HashCode>
+      <FileName>MVP\Interfaces\IModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RedmineTracker.Interfaces.INewIssueForm" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAgAAAIAAAAAAAgAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>MVP\Interfaces\INewIssueForm.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RedmineTracker.Interfaces.IPresenter" Collapsed="true">
+    <Position X="18.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>MVP\Interfaces\IPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RedmineTracker.Interfaces.IProjectDetails" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAABAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Interfaces\IProjectDetails.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RedmineTracker.Interfaces.IProjectForm" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAQAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Interfaces\IProjectForm.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RedmineTracker.Interfaces.IUpdateIssuesForm" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAQAAFBAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Interfaces\IUpdateIssuesForm.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RedmineTracker.Interfaces.IUsersListForm" Collapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Interfaces\IUsersListForm.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RedmineTracker.Interfaces.IView" Collapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVP\Interfaces\IView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

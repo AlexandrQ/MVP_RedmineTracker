@@ -41,6 +41,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,23 +53,80 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MVP\Forms\AuthenticationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MVP\Forms\AuthenticationForm.Designer.cs">
+      <DependentUpon>AuthenticationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Forms\UpdateIssuesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MVP\Forms\UpdateIssuesForm.Designer.cs">
+      <DependentUpon>UpdateIssuesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Forms\JournalsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MVP\Forms\JournalsForm.Designer.cs">
+      <DependentUpon>JournalsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MVP\Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MVP\Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MVP\Forms\NewIssueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MVP\Forms\NewIssueForm.Designer.cs">
+      <DependentUpon>NewIssueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Forms\ProjectDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MVP\Forms\ProjectDetailsForm.Designer.cs">
+      <DependentUpon>ProjectDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Forms\ProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MVP\Forms\ProjectForm.Designer.cs">
+      <DependentUpon>ProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Forms\UsersListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MVP\Forms\UsersListForm.Designer.cs">
+      <DependentUpon>UsersListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MVP\Interfaces\IAuthenticationForm.cs" />
+    <Compile Include="MVP\Interfaces\IUpdateIssuesForm.cs" />
+    <Compile Include="MVP\Interfaces\IUsersListForm.cs" />
+    <Compile Include="MVP\Interfaces\IProjectDetails.cs" />
+    <Compile Include="MVP\Interfaces\INewIssueForm.cs" />
+    <Compile Include="MVP\Interfaces\IJournalsForm.cs" />
+    <Compile Include="MVP\Interfaces\IProjectForm.cs" />
     <Compile Include="MVP\Interfaces\IModel.cs" />
     <Compile Include="MVP\Interfaces\IPresenter.cs" />
     <Compile Include="MVP\Interfaces\IMainForm.cs" />
     <Compile Include="MVP\Interfaces\IView.cs" />
     <Compile Include="MVP\Models\Model.cs" />
     <Compile Include="MVP\Models\Presenter.cs" />
+    <Compile Include="MVP\Models\Queries\Request_Issues.cs" />
+    <Compile Include="MVP\Models\Queries\Request_IssuesFilter.cs" />
+    <Compile Include="MVP\Models\Queries\Request_Journals.cs" />
+    <Compile Include="MVP\Models\Queries\Request_Memberships.cs" />
+    <Compile Include="MVP\Models\Queries\Request_Project.cs" />
+    <Compile Include="MVP\Models\Queries\Request_Projects.cs" />
     <Compile Include="MVP\Models\RedmineData\Assigned_to.cs" />
     <Compile Include="MVP\Models\RedmineData\Author.cs" />
     <Compile Include="MVP\Models\RedmineData\Authors.cs" />
     <Compile Include="MVP\Models\RedmineData\Detail.cs" />
     <Compile Include="MVP\Models\RedmineData\Details.cs" />
+    <Compile Include="MVP\Models\RedmineData\UpdateIssue.cs" />
+    <Compile Include="MVP\Models\RedmineData\NewIssue.cs" />
     <Compile Include="MVP\Models\RedmineData\Issue.cs" />
     <Compile Include="MVP\Models\RedmineData\Issues.cs" />
     <Compile Include="MVP\Models\RedmineData\Journal.cs" />
@@ -89,8 +147,29 @@
     <Compile Include="MVP\Models\RedmineData\Users.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MVP\Forms\AuthenticationForm.resx">
+      <DependentUpon>AuthenticationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MVP\Forms\JournalsForm.resx">
+      <DependentUpon>JournalsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MVP\Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MVP\Forms\NewIssueForm.resx">
+      <DependentUpon>NewIssueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MVP\Forms\ProjectDetailsForm.resx">
+      <DependentUpon>ProjectDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MVP\Forms\ProjectForm.resx">
+      <DependentUpon>ProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MVP\Forms\UpdateIssuesForm.resx">
+      <DependentUpon>UpdateIssuesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MVP\Forms\UsersListForm.resx">
+      <DependentUpon>UsersListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -101,6 +180,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

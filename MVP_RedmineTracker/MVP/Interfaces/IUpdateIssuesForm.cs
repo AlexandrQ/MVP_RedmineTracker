@@ -7,9 +7,14 @@ using RedmineRestApi.RedmineData;
 
 namespace RedmineTracker.Interfaces
 
-{
+{   
     public interface IUpdateIssuesForm : IView
     {
+        event Action changeIssue;
         void fillUserComboBox();
+
+        string getIssueID();
+        IDictionary<string, string> getFilter();
+        UpdateIssue getUpdatedIssue();
     }
 }

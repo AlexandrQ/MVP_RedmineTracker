@@ -14,6 +14,10 @@ namespace MVP_RedmineTracker
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
+        /// 
+        public static ApplicationContext Context { get; set; }
+
+
         [STAThread]
         static void Main()
         {
@@ -21,11 +25,17 @@ namespace MVP_RedmineTracker
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new MainForm());
 
-
             Model ms = new Model();
-            MainForm mainForm = new MainForm(ms);            
-            Presenter presenter = new Presenter(mainForm, ms);
+            MainForm mainForm = new MainForm(ms);
+            
+            AuthenticationForm aForm = new AuthenticationForm(ms, mainForm);
+            Context = new ApplicationContext(aForm);
+            
+
+            Presenter presenter = new Presenter(mainForm, aForm, new ProjectForm(ms),  ms);
             presenter.Run();
+            Application.Run(Context);
+
         }
     }
 }

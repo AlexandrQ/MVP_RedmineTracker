@@ -8,5 +8,6 @@ namespace RedmineTracker.Interfaces
     interface IPresenter
     {
         void Run();
+        void RunMV();
     }
 }

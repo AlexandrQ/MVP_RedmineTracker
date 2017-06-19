@@ -20,14 +20,17 @@ namespace RedmineRestApi.HttpRest
     {
 		
 
-        public Issues Run(IDictionary<string, string> queryDictionary)
+        public static Issues Run(IDictionary<string, string> queryDictionary, string Login, string Password)
         {
-			Issues myIssues = null;
+            String encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(Login + ":" + Password));
+            Issues myIssues = null;
 
 			HttpClient client = new HttpClient();
 
             //Adding Redmine API key for user Authentication . It is mine, please use yours
-            client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+
+            client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
 
             UriBuilder builder = new UriBuilder("http", "student-rm.exactpro.com", -1, "issues.json");
             NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
@@ -73,7 +76,7 @@ namespace RedmineRestApi.HttpRest
 			return myIssues;
 		}
 
-		public Issues parseIssueJson(Stream dataStream)
+		public static Issues parseIssueJson(Stream dataStream)
 		{			
 
 			DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Issues));

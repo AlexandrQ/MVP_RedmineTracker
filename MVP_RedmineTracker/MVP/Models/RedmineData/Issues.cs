@@ -82,7 +82,7 @@ namespace RedmineRestApi.RedmineData
                     {
                         //проверяем не изменились ли статусы задач
                         if (!Issue.intToBool(oldIss.Status.Name.CompareTo(newIss.Status.Name)))
-                        {
+                        {                            
                             listOfChanges.Add(count.ToString(), "Issue #" + oldIss.ID +
                                 "Changed status from " + oldIss.Status.Name + " to " + newIss.Status.Name);
                             count++;
@@ -96,7 +96,7 @@ namespace RedmineRestApi.RedmineData
                         }
                         /*
                         *
-                        *добавить проверку на изменение других полей задачи
+                        * добавить проверку на изменение других полей задачи
                         *
                         */
                     }
