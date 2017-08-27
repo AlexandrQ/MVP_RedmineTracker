@@ -8,9 +8,9 @@ namespace RedmineTracker.Interfaces
     interface IMainForm:IView
     {
         event Action NewIssue;
+        event Action NewProject;
         event Action IssueUpdate;
-        event Action ApplyFilter;
-        //event Action ChangeStatus;        
+        event Action ApplyFilter;                
         event Action ShowProjects;
         event Action showJournals;
         event Action CloseMainView;

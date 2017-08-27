@@ -43,9 +43,6 @@ namespace RedmineRestApi.RedmineData
             this.assigned_to_id = assigned_to_id;
             this.priority_id = priority_id;
             //this.watcher_user_ids[watcher_user_ids.Count()+1] = watcher_user_ids;
-
-
-
         }
 
         public override string ToString()
@@ -63,9 +60,7 @@ namespace RedmineRestApi.RedmineData
             if (status_id != null) myStr += "Status_id: " + status_id + "\n\t";
             if (assigned_to_id != null) myStr += "Assigned_to_id: " + assigned_to_id + "\n\t";
             if (priority_id != null) myStr += "Priority_id: " + priority_id + "\n\t";
-
-
-
+            
             return myStr;
         }       
     }

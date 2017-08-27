@@ -23,6 +23,7 @@ namespace MVP_RedmineTracker.MVP.Forms
         public event Action CloseMainView;
         public event Action ShowProjects;
         public event Action NewIssue;
+        public event Action NewProject;
         public event Action showJournals;
         public event Action IssueUpdate;
         public event Action ApplyFilter;
@@ -288,21 +289,7 @@ namespace MVP_RedmineTracker.MVP.Forms
             }
 
             ApplyFilter.Invoke();
-        }
-
-        /*private void changeStatusButton_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count == 1)
-            {
-                if (statusComboBox.SelectedItem != null)
-                {
-                    if (statusComboBox.SelectedItem.ToString() != "")
-                    {
-                        //ChangeStatus.Invoke();
-                    }
-                }
-            }
-        }*/
+        }       
 
         private void issueUpdateButton_Click(object sender, EventArgs e)
         {
@@ -310,6 +297,11 @@ namespace MVP_RedmineTracker.MVP.Forms
             {
                 IssueUpdate.Invoke();
             }
+        }
+
+        private void newProjectButton_Click(object sender, EventArgs e)
+        {
+            NewProject.Invoke();
         }
     }
 }

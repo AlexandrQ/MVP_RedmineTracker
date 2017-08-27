@@ -80,20 +80,24 @@ namespace RedmineRestApi.RedmineData
                     //если не равны issue с одинаковым id
                     if ((Issue.intToBool(oldIss.ID.CompareTo(newIss.ID))) & (oldIss != newIss))
                     {
+                        String str = "Issue #" + oldIss.ID + " changed ";
+
                         //проверяем не изменились ли статусы задач
                         if (!Issue.intToBool(oldIss.Status.Name.CompareTo(newIss.Status.Name)))
-                        {                            
-                            listOfChanges.Add(count.ToString(), "Issue #" + oldIss.ID +
-                                "Changed status from " + oldIss.Status.Name + " to " + newIss.Status.Name);
-                            count++;
+                        {
+                            str += "\n\t'status' from " + oldIss.Status.Name + " to " + newIss.Status.Name;
                         }
                         //проверяем не изменился ли процент выполнения задач
                         if (!Issue.intToBool(oldIss.Done_ratio.CompareTo(newIss.Done_ratio)))
                         {
-                            listOfChanges.Add(count.ToString(), "Issue #" + oldIss.ID +
-                                "Changed 'Done ratio' from " + oldIss.Done_ratio + " to " + newIss.Done_ratio);
-                            count++;
+                            str += "\n\t'Done ratio' from " + oldIss.Done_ratio + " to " + newIss.Done_ratio;
                         }
+                        //проверяем не изменился ли priority
+                        if (!Issue.intToBool(oldIss.Priority.Name.CompareTo(newIss.Priority.Name)))
+                        {
+                            str += "\n\t'Priority' from " + oldIss.Priority.Name + " to " + newIss.Priority.Name;
+                        }
+                        listOfChanges.Add(oldIss.ID, str);
                         /*
                         *
                         * добавить проверку на изменение других полей задачи

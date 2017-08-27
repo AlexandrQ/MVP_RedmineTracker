@@ -147,18 +147,17 @@ namespace RedmineTracker.MVP
         {
             myIssues = RequestIssues.Run(myLogin, myPassword);
             myThread.Start();
-        }
-
-
-        /*public void ChangeStatusQuery(string IssueID, string statusID)
-        {            
-            RequestIssues.RunPut(IssueID, statusID);
-        }*/
+        }      
 
 
         public void CreateNewIssueQuery(NewIssue myQuery)
         {
             RequestIssues.RunPost(myQuery, myLogin, myPassword);
+        }
+
+        public void CreateNewProjectQuery(NewProject myQuery)
+        {
+            RequestProject.POSTNewProject(myQuery, myLogin, myPassword);
         }
 
 
@@ -170,11 +169,7 @@ namespace RedmineTracker.MVP
 
 
         public void UpdateIssueQuery(string IssID, UpdateIssue updatedIssue /*IDictionary<string, string> myFilter*/)
-        {
-            /*RequestIssuesFilter simpleReq = new RequestIssuesFilter();
-            myFilterIssues = simpleReq.Run(updatedIssue);*/
-            //FilterApplied.Invoke();
-
+        {          
             //добавить здесь избавление от null
             foreach (Issue myIss in myIssues.issues)
             {

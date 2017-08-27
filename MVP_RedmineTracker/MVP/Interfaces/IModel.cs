@@ -31,16 +31,16 @@ namespace RedmineTracker.Interfaces
         
         void IssuesQuery();
         void ProjectsQuery();        
-        void CreateNewIssueQuery(NewIssue myQuery);
+        void CreateNewIssueQuery(NewIssue myQuery);        
         void AuthenticationQuery(string L, string P);
+        void CreateNewProjectQuery(NewProject myQuery);
         void FilterQuery(IDictionary<string, string> myQuery);
-        void JournalsQuery(string issueID, IJournalsForm _jf);
-        //void ChangeStatusQuery(string IssueID, string statusID);
+        void JournalsQuery(string issueID, IJournalsForm _jf);        
         void UsersListQuery(string projID, IUsersListForm _UForm);
+        void UpdateIssueQuery(string issID, UpdateIssue updatedIssue);
         void UsersListComboQuery(string projID, IUpdateIssuesForm _UIForm);
         void ProjDetailsQuery(string projID, IProjectDetails _detailsForm);
-        void UsersListComboQuery(string projID, INewIssueForm _INewIssForm);
-        void UpdateIssueQuery(string issID, UpdateIssue updatedIssue/*IDictionary<string, string> myFilter*/);
+        void UsersListComboQuery(string projID, INewIssueForm _INewIssForm);        
 
         void stopThread();        
     }

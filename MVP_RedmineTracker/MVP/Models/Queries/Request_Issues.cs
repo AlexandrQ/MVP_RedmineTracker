@@ -201,44 +201,22 @@ namespace RedmineRestApi.HttpRest
 
 
         public static void RunPost (NewIssue newIssue, string Login, string Password)
-        {
-            //Issues myIssues = null;
+        {            
             String encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(Login + ":" + Password));
 
             HttpClient client = new HttpClient();
-
-            //Adding Redmine API key for user Authentication . It is mine, please use yours
-            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
 
             client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
 
             UriBuilder builder = new UriBuilder("http", "student-rm.exactpro.com", -1, "issues.json");
             NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
-           /*query["tracker_id"] = "2";
-
-            foreach (KeyValuePair<string, string> myPair in queryDictionary)
-            {
-                query[myPair.Key] = myPair.Value;
-            }
-
-            builder.Query += query.ToString();*/
-
-            
-
+        
             HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Post, builder.Uri);
-            //message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+           
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            string json = serializer.Serialize(newIssue);
+            string json = serializer.Serialize(newIssue);           
 
-            /*foreach (KeyValuePair<string, string> myPair in filter)
-            {
-                if (myPair.Value != null)
-                {
-                    myString += "\"" + ;
-                }
-            } */
-
-            message.Content = new StringContent("{\"issue\":" + json + "}",//{\"project_id\":12, \"subject\": \"Example\",\"priority_id\": 1, \"tracker_id\": 2}}",
+            message.Content = new StringContent("{\"issue\":" + json + "}",
                                     Encoding.UTF8,
                                     "application/json"); 
 
@@ -250,17 +228,13 @@ namespace RedmineRestApi.HttpRest
             
             if (response.IsSuccessStatusCode)
             {
-
                 Task<Stream> streamTask = response.Content.ReadAsStreamAsync();
 
                 streamTask.Wait();
 
                 if (streamTask.IsCompleted)
                 {
-                    Stream responseStream = streamTask.Result;
-
-                    //myIssues = parseIssueJson(responseStream);
-
+                    Stream responseStream = streamTask.Result;               
                     responseStream.Close();
                 }
             }

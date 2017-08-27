@@ -10,6 +10,7 @@ using System.Collections.Specialized;
 using System.Web;
 using RedmineRestApi.RedmineData;
 using System.Runtime.Serialization.Json;
+using System.Web.Script.Serialization;
 
 using Newtonsoft.Json;
 
@@ -71,7 +72,55 @@ namespace RedmineRestApi.HttpRest
 			return myProject;
 		}
 
-		public static Projects parseIssueJson(Stream dataStream)
+
+
+        public static void POSTNewProject (NewProject newProject, string Login, string Password)
+        {            
+            String encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(Login + ":" + Password));
+
+            HttpClient client = new HttpClient();
+            
+            client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
+
+            UriBuilder builder = new UriBuilder("http", "student-rm.exactpro.com", -1, "projects.json");
+            NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);     
+
+            HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Post, builder.Uri);
+            
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string json = serializer.Serialize(newProject);            
+
+            message.Content = new StringContent("{\"project\":" + json + "}",
+                                    Encoding.UTF8,
+                                    "application/json");            
+
+            Task<HttpResponseMessage> taskResponse = client.SendAsync(message);
+
+            taskResponse.Wait();
+
+            HttpResponseMessage response = taskResponse.Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                Task<Stream> streamTask = response.Content.ReadAsStreamAsync();
+
+                streamTask.Wait();
+
+                if (streamTask.IsCompleted)
+                {
+                    Stream responseStream = streamTask.Result;                    
+
+                    responseStream.Close();
+                }
+            }
+            else
+            {
+                Console.WriteLine(" response failed. Response status code: [" + response.StatusCode + "]");
+            }
+        }
+
+
+        public static Projects parseIssueJson(Stream dataStream)
 		{			
 
 			DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Projects));

@@ -59,6 +59,12 @@
     <Compile Include="MVP\Forms\AuthenticationForm.Designer.cs">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MVP\Forms\NewProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MVP\Forms\NewProjectForm.Designer.cs">
+      <DependentUpon>NewProjectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MVP\Forms\UpdateIssuesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,7 @@
       <DependentUpon>UsersListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MVP\Interfaces\IAuthenticationForm.cs" />
+    <Compile Include="MVP\Interfaces\INewProjectForm.cs" />
     <Compile Include="MVP\Interfaces\IUpdateIssuesForm.cs" />
     <Compile Include="MVP\Interfaces\IUsersListForm.cs" />
     <Compile Include="MVP\Interfaces\IProjectDetails.cs" />
@@ -125,6 +132,7 @@
     <Compile Include="MVP\Models\RedmineData\Authors.cs" />
     <Compile Include="MVP\Models\RedmineData\Detail.cs" />
     <Compile Include="MVP\Models\RedmineData\Details.cs" />
+    <Compile Include="MVP\Models\RedmineData\NewProject.cs" />
     <Compile Include="MVP\Models\RedmineData\UpdateIssue.cs" />
     <Compile Include="MVP\Models\RedmineData\NewIssue.cs" />
     <Compile Include="MVP\Models\RedmineData\Issue.cs" />
@@ -158,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MVP\Forms\NewIssueForm.resx">
       <DependentUpon>NewIssueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MVP\Forms\NewProjectForm.resx">
+      <DependentUpon>NewProjectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MVP\Forms\ProjectDetailsForm.resx">
       <DependentUpon>ProjectDetailsForm.cs</DependentUpon>

@@ -19,8 +19,10 @@ namespace RedmineTracker.MVP
         private IJournalsForm _journalsView;
         private IProjectDetails _detailsView;
         private IUsersListForm _usersListView;
+        private INewProjectForm _newProjectView;
         private IUpdateIssuesForm _updateIssuesView;
         private IAuthenticationForm _authenticationForm;
+        
 
 
         public Presenter(IMainForm v1, IAuthenticationForm v3, IProjectForm v2, IModel s)
@@ -35,19 +37,15 @@ namespace RedmineTracker.MVP
             _mainView.ShowProjects += () => ShowProjectsView();
             _mainView.NewIssue += () => ShowNewIssueView();
             _mainView.showJournals += () => OpenJournalsForm(_mainView.getSelectedIssueID());
-            _mainView.ApplyFilter += () => SendFilterQuery(_mainView.getFilter());
-            //_mainView.ChangeStatus += () => ChangeStatusReq(_mainView.getSelectedIssueID(), _mainView.getSelectedStatusID());
+            _mainView.ApplyFilter += () => SendFilterQuery(_mainView.getFilter());            
             _mainView.IssueUpdate += () => OpenUpdateIssueView(_mainView.getSelectedIssueID());
+            _mainView.NewProject += () => ShowNewProjectView();
 
             _projectView.ShowProjects += () => ShowProj();
             _projectView.ShowDetailsView += () => OpenProjDetailsForm(_projectView.getSelectedProjID());
 
             _authenticationForm.checkAuthentication += () => checkAuthentication(_authenticationForm.getLogin(), _authenticationForm.getPassword());
-            _storage.AuthenticationPassed += () => RunMV();
-
-            //_updateIssuesView.changeIssue += () => SendChangeIssueQuery(_updateIssuesView.getIssueID(), _updateIssuesView.getFilter());
-
-            //_newIssueView.projectComboBoxSelected += () => UserQuery(_newIssueView.getSelectedProjID());
+            _storage.AuthenticationPassed += () => RunMV();            
         }        
 
         private void ShowProj()
@@ -62,7 +60,7 @@ namespace RedmineTracker.MVP
         }
 
 
-        private void SendChangeIssueQuery(string issID, UpdateIssue UpIss/*IDictionary<string, string> myFilter*/)
+        private void SendChangeIssueQuery(string issID, UpdateIssue UpIss)
         {
             _storage.UpdateIssueQuery(issID, UpIss);
         }
@@ -73,23 +71,23 @@ namespace RedmineTracker.MVP
             _storage.CreateNewIssueQuery(query);
         }
 
-        private void checkAuthentication(string L, string P)
+
+        private void SendNewProjectQuery(NewProject query)
         {
-            _storage.AuthenticationQuery(L, P);
+            _storage.CreateNewProjectQuery(query);
         }
 
 
-        /*private void ChangeStatusReq(string IssueID, string statusID)
+        private void checkAuthentication(string L, string P)
         {
-            _storage.ChangeStatusQuery(IssueID, statusID);
-        } */
+            _storage.AuthenticationQuery(L, P);
+        }     
 
 
         private void initIssuesIssues()
         {
             _storage.IssuesQuery();
-            _storage.ProjectsQuery();
-            //_storage.ProjectComboInit();
+            _storage.ProjectsQuery();            
         }
 
 
@@ -110,8 +108,16 @@ namespace RedmineTracker.MVP
             _newIssueView = new NewIssueForm(_storage);
             _newIssueView.OpenView();
             _newIssueView.CreateNewIssue += () => SendNewIssueQuery(_newIssueView.getNewIssue());
-        }  
-        
+        }
+
+
+        private void ShowNewProjectView()
+        {
+            _newProjectView = new NewProjectForm();
+            _newProjectView.OpenView();
+            _newProjectView.CreateNewProject += () => SendNewProjectQuery(_newProjectView.getNewProjectData());
+        }
+
 
         private void OpenJournalsForm(string str)
         {
