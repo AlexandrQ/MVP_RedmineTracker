@@ -28,7 +28,7 @@ namespace RedmineRestApi.HttpRest
 			HttpClient client = new HttpClient();
 
             //Adding Redmine API key for user Authentication . It is mine, please use yours
-            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "");
 
             client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
 

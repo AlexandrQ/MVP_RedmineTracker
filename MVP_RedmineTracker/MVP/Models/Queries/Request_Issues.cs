@@ -27,7 +27,7 @@ namespace RedmineRestApi.HttpRest
             HttpClient client = new HttpClient();
 
 
-            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "");
             client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
 
             UriBuilder builder = new UriBuilder("http", "student-rm.exactpro.com", -1, "issues.json");
@@ -89,7 +89,7 @@ namespace RedmineRestApi.HttpRest
             HttpClient client = new HttpClient();
 
 
-            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "");
             client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
 
             UriBuilder builder = new UriBuilder("http", "student-rm.exactpro.com", -1, "issues.json");
@@ -154,7 +154,7 @@ namespace RedmineRestApi.HttpRest
 
             HttpClient client = new HttpClient();
 
-            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "2e19a125998b544210deacedc0b94a17cd844a76");
+            //client.DefaultRequestHeaders.Add("X-Redmine-API-Key", "");
             client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
 
             UriBuilder builder = new UriBuilder("http", "student-rm.exactpro.com", -1, "issues/" + issueID + ".json");            
